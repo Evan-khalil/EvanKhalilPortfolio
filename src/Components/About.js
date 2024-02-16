@@ -23,7 +23,7 @@ const About = () => {
   return (
     <section id="about" className="about-section">
       <div className="container">
-      <h2 id="about-title">About Me</h2>
+      <h2 >About Me</h2>
         <p dangerouslySetInnerHTML={{__html: text}} id='about-text'></p>
       </div>
     </section>

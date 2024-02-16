@@ -1,5 +1,4 @@
-/* Projects.css */
-
+/* Projects section */
 #Projects {
   text-align: center;
   padding-top: 40%;
@@ -21,114 +20,128 @@
 
 @keyframes pulse {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   50% {
-      opacity: 1;
+    opacity: 1;
   }
   100% {
-      opacity: 0;
+    opacity: 0;
   }
 }
 
-@media(max-width: 4351px) {
+@media (max-width: 4351px) {
   #nextandprev {
-      height: 10%;
-      top: 350px;
-      width: 5%;
+    height: 10%;
+    top: 350px;
+    width: 5%;
   }
+
   #projectsection {
-      height: 1000px;
+    height: 1000px;
   }
 }
 
-@media(max-width: 1351px) {
+@media (max-width: 1351px) {
   #projectsection {
-      height: 1000px;
+    height: 1000px;
   }
+
   .embed-responsive {
-      height: 75%;
-  } 
+    height: 75%;
+  }
 }
 
-@media(max-width: 1165px) {
+@media (max-width: 1165px) {
   #projectsection {
-      height: 900px;
+    height: 900px;
   }
+
   .embed-responsive {
-      height: 65%;
-  } 
+    height: 65%;
+  }
+
   #nextandprev {
-      top: 260px;
+    top: 260px;
   }
 }
 
 @media (max-width: 900px) {
   #projectsection {
-      height: 800px;
+    height: 800px;
   }
+
   .embed-responsive {
-      height: 60%;
+    height: 60%;
   }
+
   #nextandprev {
-      height: 10%;
-      top: 215px;
-      width: 5%;
+    height: 10%;
+    top: 215px;
+    width: 5%;
   }
 }
 
 @media (max-width: 720px) {
   #projectsection {
-      height: 750px;
+    height: 750px;
   }
+
   .embed-responsive {
-      height: 55%;
+    height: 55%;
   }
+
   #nextandprev {
-      top: 166px;
+    top: 166px;
   }
 }
 
 @media (max-width: 550px) {
   #projectsection {
-      height: 695px;
+    height: 695px;
   }
+
   .embed-responsive {
-      height: 42%;
+    height: 42%;
   }
+
   #nextandprev {
-      height: 17%;
-      top: 113px;
+    height: 17%;
+    top: 113px;
   }
 }
 
 @media (max-width: 480px) {
   #projectsection {
-      height: 600px;
+    height: 600px;
   }
+
   .embed-responsive {
-      height: 40%;
+    height: 40%;
   }
+
   #nextandprev {
-      height: 9%;
-      top: 100px;
+    height: 9%;
+    top: 100px;
   }
 }
 
 @media (max-width: 426px) {
   #nextandprev {
-      top: 99px;
+    top: 99px;
   }
 }
 
 @media (max-width: 400px) {
   #projectsection {
-      height: 550px;
+    height: 550px;
   }
+
   .embed-responsive {
-      height: 38%;
+    height: 38%;
   }
+
   #nextandprev {
-      top: 96px;
+    top: 96px;
   }
 }

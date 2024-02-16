@@ -3,7 +3,7 @@
 }
 
 :root {
-  --primary: #ffffff;
+  --primary: #fafafa;
   --primary-gradient: linear-gradient(45deg, #153c7e00 0%, #00000000 100%);
 }
 
@@ -16,7 +16,7 @@
   font-size: 1.8rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  color: white;
+
 }
 
 .steps {
