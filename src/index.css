@@ -1,0 +1,20 @@
+
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('C://Users//Evank//Desktop//Files//myportfolio//public//Production-Id-4210523 (1).gif'); /* Background image */
+  background-repeat: no-repeat; /* Prevent background from repeating */
+  background-size: cover; /* Cover the entire viewport */
+  background-attachment: fixed; /* Fix the background image */
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

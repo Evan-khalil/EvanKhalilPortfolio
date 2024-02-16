@@ -1,0 +1,28 @@
+/* About.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.about-section {
+  width: 100%;
+  padding: 50px 20px; /* Adjust padding as needed */
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 800px; /* Adjust maximum width as needed */
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 800px; /* Adjust maximum width as needed */
+  margin: 0 auto;
+}
+#about-title{
+  color: white;
+}
+#about-text{
+  color: rgb(255, 255, 255);
+}
+  
+
+  
