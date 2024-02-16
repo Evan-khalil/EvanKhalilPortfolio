@@ -1,33 +1,97 @@
-/* Education.css */
-.education-section {
-  padding: 80px 0;
+#Education {
+  padding-top: 20%;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+:root {
+  --primary: #ffffff;
+  --primary-gradient: linear-gradient(45deg, #153c7e00 0%, #00000000 100%);
 }
 
-.container h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
+.section-header {
+  color: var(--primary);
+  text-align: center;
 }
 
-.course {
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.SectionHeaders {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: white;
 }
 
-.course h3 {
-  font-size: 24px;
+.steps {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.steps .content p {
+  color: var(--primary);
+  font-size: 0.8rem;
+  margin-bottom: 1rem; /* Added margin-bottom */
+}
+
+.contentHead {
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem; /* Added margin-bottom */
+}
+
+.steps-container {
+  position: relative;
+  width: calc(50% + 32px);
+  display: flex;
+  flex-wrap: wrap; /* Added flex-wrap to allow items to wrap */
+}
+
+.steps-container .content {
+  padding: 1rem; /* Adjusted padding */
+  border-radius: 20px;
+  width: 100%; /* Adjusted width */
+}
+
+.steps .steps-container:nth-child(even) {
+  left: calc(50% - 32px);
+  flex-direction: row-reverse;
+}
+
+.steps-container .university {
+  font-weight: 1000;
+  font-size: 0.6rem;
+  color: var(--primary-gradient);
   margin-bottom: 10px;
-  color: #007bff;
+  width: 62px;
+  height: 62px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  z-index: 777;
+  transform: scale(2);
 }
 
-.course p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
+.step-line {
+  width: 50px;
+  height: 4px;
+  margin-top: 31px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .steps-container {
+    left: 0;
+    flex-direction: row-reverse;
+    width: auto;
+    margin-bottom: 16px;
+  }
+
+  .steps .steps-container:nth-child(even) {
+    left: 0;
+  }
+}
+
+@media (max-width: 415px) {
+  .steps-container {
+    width: 100%; /* Changed width to 100% */
+  }
 }
