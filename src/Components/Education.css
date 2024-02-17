@@ -42,9 +42,7 @@
   display: flex;
   flex-wrap: wrap; /* Added flex-wrap to allow items to wrap */
 }
-#Education{
-  background: rgba(0, 0, 0, 0.382);  
-}
+
 .steps-container .content {
   padding: 1rem; /* Adjusted padding */
   border-radius: 20px;
