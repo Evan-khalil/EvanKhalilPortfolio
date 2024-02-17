@@ -1,11 +1,4 @@
-#Education {
-    padding-top: 20%;
-  }
-  
-  .bg-gradient_solid {
-    background: var(--primary-gradient);
-  }
-  
+
   .container-fluid {
     max-width: 1200px;
     margin: 0 auto;
@@ -36,7 +29,6 @@
   .steps-container .content {
     padding: 20px;
     border-radius: 20px;
-    background-color: var(--primary);
     color: var(--primary-gradient);
   }
   
