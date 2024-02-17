@@ -20,13 +20,19 @@ const VideoCarousel = () => {
             <div className="carousel-inner" role="listbox">
               <div className="carousel-item active">
                 <div className="inner-content vid-inner-content">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/1m4SZ1GNv8k?si=lRDWtLXB51jIDGMz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                </div>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/83apjSbVV-o?si=D4pEVQV1Ap-8Scdq" title="YouTube video player" allowFullScreen></iframe>
+                  </div>
+                </div>
               </div>
               <div className="carousel-item">
                 <div className="inner-content vid-inner-content">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/gSwQwyqYXuU?si=wKID2i-_fyj4C5pY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                </div>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/83apjSbVV-o?si=D4pEVQV1Ap-8Scdq" title="YouTube video player" allowFullScreen></iframe>
+                  </div>
+                </div>
               </div>
-              {/* Add more iframe elements for other videos */}
+              {/* Add more carousel items for other videos */}
             </div>
             
             {/* Controls */}
