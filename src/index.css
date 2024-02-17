@@ -10,7 +10,7 @@ body {
   background-image: url('Background.gif'); /* Background image */
   background-repeat: no-repeat; /* Prevent background from repeating */
   background-size: cover; /* Cover the entire viewport */
-  background-attachment: fixed; /* Fix the background image */
+  background-attachment: scroll; /* Fix the background image */
   
 }
 
