@@ -13,6 +13,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   position: absolute;
+  background-repeat: no-repeat; /* Prevent background from repeating */
   
 }
 
