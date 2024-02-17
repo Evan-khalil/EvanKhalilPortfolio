@@ -11,7 +11,6 @@ function App() {
       <Navbar />
       <main>
         <About />
-        <Education />
         
       </main>
     </div>
