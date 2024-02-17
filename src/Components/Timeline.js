@@ -4,7 +4,7 @@ import './Timeline.css';
 
 const Timeline = () => {
   return (
-    <div className="timeline">
+    <section className="timeline">
       <div className="outer">
         <div className="card">
           <div className="info">
@@ -37,7 +37,7 @@ const Timeline = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
