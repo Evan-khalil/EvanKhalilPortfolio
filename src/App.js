@@ -2,7 +2,6 @@
 import React from 'react';
 import Navbar from './Components/Navbar';
 import About from './Components/About';
-import Education from './Components/Education'
 import './App.css';
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
       <Navbar />
       <main>
         <About />
-        <Education/>
       </main>
     </div>
   );
