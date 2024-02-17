@@ -10,11 +10,8 @@ function App() {
       <Navbar />
       <main>
         <About />
-<<<<<<< HEAD
         <Education />
         
-=======
->>>>>>> parent of c6f38c1 (#4 commit)
       </main>
     </div>
   );
