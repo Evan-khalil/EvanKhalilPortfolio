@@ -1,0 +1,66 @@
+#Education {
+    padding-top: 20%;
+  }
+  
+  .bg-gradient_solid {
+    background: var(--primary-gradient);
+  }
+  
+  .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .section-header {
+    color: var(--primary);
+    text-align: center;
+  }
+  
+  .SectionHeaders {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 76px;
+  }
+  
+  .steps {
+    position: relative;
+    margin-top: 32px;
+  }
+  
+  .steps-container {
+    display: flex;
+    margin-bottom: 32px;
+  }
+  
+  .steps-container .content {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--primary);
+    color: var(--primary-gradient);
+  }
+  
+  .contentHead {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .step-line {
+    width: 50px;
+    height: 4px;
+    margin-top: 31px;
+  }
+  
+  @media (max-width: 767px) {
+    .steps-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 415px) {
+    .container-fluid {
+      padding: 0 10px;
+    }
+  }
+  
