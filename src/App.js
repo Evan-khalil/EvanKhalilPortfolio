@@ -10,7 +10,6 @@ function App() {
       <Navbar />
       <main>
         <About />
-        
       </main>
     </div>
   );

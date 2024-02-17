@@ -1,15 +1,14 @@
-/* Navbar.css */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: #333;
-    padding: 10px 0; /* Adjust padding */
+    padding: 10px 0;
     z-index: 1000;
-    display: flex; /* Center horizontally */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .navbar-toggle {
@@ -24,10 +23,10 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     transition: max-height 1s ease;
-    max-height: 500px; /* Adjust as needed */
+    max-height: 500px;
     overflow: hidden;
   }
   
@@ -61,13 +60,11 @@
     }
   
     .navbar.open .navbar-links {
-      max-height: 500px; /* Adjust as needed */
+      max-height: 500px;
     }
   }
-  /* Navbar.css */
-
 .navbar {
-    background-color: #000000; /* Forest Green */
+    background-color: #000000;
     padding: 20px 0;
   }
   
@@ -84,7 +81,7 @@
   
   .navbar ul li a {
     text-decoration: none;
-    color: #FFFFFF; /* Cloud White */
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 18px;
   }

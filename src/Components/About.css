@@ -1,25 +1,24 @@
-/* About.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .about-section {
   width: 100%;
-  padding: 50px 20px; /* Adjust padding as needed */
+  padding: 50px 20px; 
   box-sizing: border-box;
-  text-align: center; /* Center align text */
+  text-align: center;
 
 }
 
 .container {
-  max-width: 800px; /* Adjust maximum width as needed */
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .container {
-  max-width: 800px; /* Adjust maximum width as needed */
+  max-width: 1300px;
   margin: 0 auto;
 }
-
-  
+#about{
+  color: white;
+}
 
   
