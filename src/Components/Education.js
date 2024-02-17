@@ -3,7 +3,7 @@ import './Education.css'; // Assuming you have a CSS file named Education.css fo
 
 function Education() {
   return (
-    <section id="Education">
+    <section >
       <div className="bg-gradient_solid">
         <div className="container-fluid">
           <div className="section-header">
