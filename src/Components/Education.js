@@ -1,43 +1,80 @@
-// components/Timeline.js
 import React from 'react';
-import './Education.css';
+import './Education.css'; // Import the CSS file containing the provided styles
 
-const Timeline = () => {
+function Timeline() {
   return (
-    <div className="timeline">
-      <div className="outer">
-        <div className="card">
-          <div className="info">
-            <h3 className="title">Title 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+    <section id="timeline">
+      <article>
+        <div className="inner">
+        <span className="date">
+
+          </span>
+          <h2>Bachelor's programme in Information Systems</h2>
+          <p>
+   Knowledge about people, organizations, and how to develop technology to support them alongside learning the basics of systems analysis and software development.
+   The program offers courses in object-oriented analysis and design, agile methods, interaction design, database management, and programming in C# and Java.</p>
+                            
           </div>
-        </div>
-        <div className="card">
-          <div className="info">
-            <h3 className="title">Title 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Computer Networks I</h2>
+          <p>This course provides a foundation in the theory and practice of configuring and securing computer networks, including instruction on creating basic network topologies.</p>                      
           </div>
-        </div>
-        <div className="card">
-          <div className="info">
-            <h3 className="title">Title 3</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Game Development - 3D Modelling and Character Animation</h2>
+          <p>A course provides a foundational understanding and hands-on experience in creating game graphics using 2D and 3D tools, including techniques for rigging and animating characters and their movements for digital games.</p>
           </div>
-        </div>
-        <div className="card">
-          <div className="info">
-            <h3 className="title">Title 4</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Game Design</h2>
+          <p>This course covers the fundamentals of creating engaging gameplay, including game history, game structure, and techniques in game design</p>
           </div>
-        </div>
-        <div className="card">
-          <div className="info">
-            <h3 className="title">Title 5</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Introduction to computer game creation</h2>
+          <p>This course provides an overview of the professional roles, work processes, and production pipeline in the game industry. It covers basic scripting and visual scripting, as well as game and level design, and content creation for games</p>
           </div>
-        </div>
-      </div>
-    </div>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Programming in C#, III</h2>
+          <p>This course is designed for advanced programmers looking to sharpen their skills and develop applications using the advanced features of the C# language and .NET technologies.</p>
+          </div>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Programming for Internet</h2>
+          <p>Gain expertise in using C# to program with supportive technologies, establish low-level connections to various servers, establish high-level connections to specialized servers like email, web, and database servers, and ensure security while communicating over the internet.
+          </p>
+          </div>
+      </article>
+      <article>
+        <div className="inner">
+        <span className="date">
+          </span>
+          <h2>Web Development II</h2>
+          <p>Learn to build sophisticated web-based systems using JavaScript and PHP for both client- and server-side programming in this course.
+</p>          
+</div>
+      </article>
+    </section>
   );
 }
 

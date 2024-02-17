@@ -8,10 +8,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Navbar/>
       <main>
-        <About />
-        <Education/>
+      <About/>
+      <Education/>
+        <div className='wave'>
+          
+        </div>
       </main>
     </div>
   );
