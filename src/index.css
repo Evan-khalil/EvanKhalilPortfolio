@@ -9,7 +9,7 @@ body:before {
   height: 100%;
   z-index: -10;
   background: url('Background.gif') no-repeat center center;
-  background-size: cover; /* or background-size: contain; */
+  background-size: 100% 100%; /* Fixed background size */
 }
 
 code {
