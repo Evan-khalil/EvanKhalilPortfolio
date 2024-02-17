@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Education from './Components/Education';
+import Carousel from './Components/Carousel';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <main>
       <About/>
       <Education/>
+      <Carousel/>
         <div className='wave'>
           
         </div>

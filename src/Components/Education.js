@@ -7,7 +7,6 @@ function Timeline() {
       <article>
         <div className="inner">
         <span className="date">
-
           </span>
           <h2>Bachelor's programme in Information Systems</h2>
           <p>
