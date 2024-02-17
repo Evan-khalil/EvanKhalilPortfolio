@@ -27,7 +27,8 @@ const VideoCarousel = () => {
               <div className="carousel-item">
                 <div className="inner-content vid-inner-content">
                   <div className="embed-responsive embed-responsive-16by9">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/gSwQwyqYXuU?si=FGeXHXubbb36YMHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                </div>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/gSwQwyqYXuU?si=FGeXHXubbb36YMHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                  </div>
+                </div>
               </div>
               {/* Add more carousel items for other videos */}
             </div>
