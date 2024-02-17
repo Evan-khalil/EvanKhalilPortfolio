@@ -10,7 +10,6 @@
   }
   
   body {
-    background: var(--background-color);
     font-family: var(--font);
     display: flex;
     justify-content: center;
