@@ -6,6 +6,8 @@
   width: 100%;
   padding: 50px 20px; /* Adjust padding as needed */
   box-sizing: border-box;
+  text-align: center; /* Center align text */
+
 }
 
 .container {
