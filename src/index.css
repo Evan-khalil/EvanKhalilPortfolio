@@ -9,8 +9,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('Background.gif'); /* Background image */
   background-repeat: no-repeat; /* Prevent background from repeating */
+  background-size: cover; /* Cover the entire viewport */
   background-position: center center;
-  background-attachment: fixed;
   
 }
 
