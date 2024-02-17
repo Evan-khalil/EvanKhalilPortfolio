@@ -1,0 +1,74 @@
+/* components/Timeline.css */
+
+.timeline {
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card {
+    position: relative;
+    max-width: 400px;
+    margin-bottom: 30px;
+  }
+  
+  .info {
+    background: #333;
+    color: gray;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .title {
+    color: orangered;
+    position: relative;
+  }
+  
+  .title::before {
+    content: "";
+    position: absolute;
+    width: 10px; /* Adjusted width for the connector */
+    height: 100%;
+    background: orangered; /* Background color for the connector */
+    top: 0;
+    left: -5px; /* Adjusted positioning for odd cards */
+    z-index: -1; /* Push the connector behind the content */
+  }
+  
+  .card:nth-child(even) .title::before {
+    left: auto; /* Reset positioning for even cards */
+    right: -5px; /* Adjusted positioning for even cards */
+  }
+  
+  .card:last-child .title::before {
+    height: 50%; /* Reduce height for the last card */
+  }
+  
+  .card:nth-child(odd) .info {
+    text-align: left;
+  }
+  
+  .card:nth-child(even) .info {
+    text-align: right;
+  }
+  
+  /* Media Query for smaller screens */
+  @media only screen and (max-width: 768px) {
+    .card {
+      max-width: 300px;
+    }
+  
+    .title::before {
+      width: 5px; /* Adjusted width for smaller screens */
+    }
+  
+    .card:last-child .title::before {
+      height: 100%; /* Reset height for the last card on smaller screens */
+    }
+  }
+  
