@@ -10,7 +10,8 @@ body {
   background-image: url('Background.gif'); /* Background image */
   background-repeat: no-repeat; /* Prevent background from repeating */
   background-size: cover; /* Cover the entire viewport */
-  
+  background-position: center center;
+  background-attachment: fixed;
   
 }
 
@@ -18,8 +19,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-@media (max-width: 768px) {
-  body {
-    background-size: contain; /* or any other suitable size */
-  }
-}
+
