@@ -105,7 +105,7 @@ const Carousel = () => {
   };
 
   return (
-    <Container>
+    <Container id='Projects'>
       <Title>Project highlights</Title>
       <CarouselContainer>
         {videos.map((video, index) => (
