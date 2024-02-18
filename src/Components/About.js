@@ -14,6 +14,7 @@ const About = () => {
   const typingSpeed = 10; // Adjust the typing speed as needed
   const eraseDelay = 3000;
   const paragraphHeight = 70; // Adjust the height as needed
+  const initialDelay = 2000; // Adjust the initial delay time in milliseconds
 
   useEffect(() => {
     let lineIndex = 0;
@@ -46,7 +47,8 @@ const About = () => {
 
     const startTypewriter = () => {
       if (pageLoaded) {
-        typeLine();
+        // Start typewriter effect after initial delay
+        setTimeout(typeLine, initialDelay);
       }
     };
 
@@ -56,15 +58,13 @@ const About = () => {
   }, [pageLoaded]);
 
   useEffect(() => {
-    setPageLoaded(true);
-  }, []);
+    // Set pageLoaded to true after a delay
+    const delayTimer = setTimeout(() => {
+      setPageLoaded(true);
+    }, initialDelay);
 
-  useEffect(() => {
-    // Pre-render the full text content once the page is loaded
-    if (pageLoaded) {
-      setText(aboutLines.join(' '));
-    }
-  }, [pageLoaded]);
+    return () => clearTimeout(delayTimer); // Clear the timeout if component unmounts or pageLoaded changes
+  }, []);
 
   return (
     <section id="about" className="about-section">
