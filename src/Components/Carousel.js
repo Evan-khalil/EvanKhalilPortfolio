@@ -103,7 +103,13 @@ const Carousel = () => {
   const playVideo = (index) => {
     playerRefs.current.forEach((ref, i) => {
       if (ref && i === index) {
-        ref.src = videos[index] + "&autoplay=1";
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        const isSmallScreen = window.innerWidth <= 768; // Adjust this threshold if needed
+        if (!isMobile && !isSmallScreen) {
+          ref.src = videos[index] + "&autoplay=1";
+        } else {
+          ref.src = videos[index]; // Autoplay may not work on mobile devices or small screens
+        }
       } else if (ref) {
         ref.src = videos[i];
       }
@@ -127,7 +133,7 @@ const Carousel = () => {
               title={`Video ${index + 1}`}
               width="350"
               height="400"
-              src={video + "&autoplay=0"}
+              src={video}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
