@@ -11,7 +11,7 @@ const About = () => {
     "As you explore my website, you will find examples of my past work and accomplishments. I am proud of what I have learned so far and am excited for the future",
     "If you have any questions or would like to discuss any potential opportunities, please don't hesitate to reach out to me. Thank you for visiting my website."
   ];
-  const typingSpeed = 10;
+  const typingSpeed = 10; // Adjust the typing speed as needed
   const eraseDelay = 3000;
   const paragraphHeight = 70; // Adjust the height as needed
 
@@ -19,29 +19,28 @@ const About = () => {
     let lineIndex = 0;
     let charIndex = 0;
     let eraseTimer;
-    let animationFrame;
 
     const typeLine = () => {
-      setText(aboutLines[lineIndex].substring(0, charIndex));
+      setText((prevText) => aboutLines[lineIndex].substring(0, charIndex + 1)); // Adjusted to include next character
       charIndex++;
 
       if (charIndex <= aboutLines[lineIndex].length) {
-        animationFrame = requestAnimationFrame(typeLine);
+        setTimeout(typeLine, typingSpeed); // Use setTimeout for consistent interval
       } else {
         eraseTimer = setTimeout(eraseLine, eraseDelay);
       }
     };
 
     const eraseLine = () => {
-      setText(aboutLines[lineIndex].substring(0, charIndex));
+      setText((prevText) => aboutLines[lineIndex].substring(0, charIndex - 1)); // Adjusted to remove last character
       charIndex--;
 
       if (charIndex >= 0) {
-        animationFrame = requestAnimationFrame(eraseLine);
+        setTimeout(eraseLine, typingSpeed); // Use setTimeout for consistent interval
       } else {
         lineIndex = (lineIndex + 1) % aboutLines.length;
         charIndex = 0;
-        animationFrame = requestAnimationFrame(typeLine);
+        setTimeout(typeLine, typingSpeed); // Use setTimeout for consistent interval
       }
     };
 
@@ -53,15 +52,19 @@ const About = () => {
 
     startTypewriter();
 
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      clearTimeout(eraseTimer);
-    };
+    return () => clearTimeout(eraseTimer);
   }, [pageLoaded]);
 
   useEffect(() => {
     setPageLoaded(true);
   }, []);
+
+  useEffect(() => {
+    // Pre-render the full text content once the page is loaded
+    if (pageLoaded) {
+      setText(aboutLines.join(' '));
+    }
+  }, [pageLoaded]);
 
   return (
     <section id="about" className="about-section">
