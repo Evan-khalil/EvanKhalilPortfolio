@@ -14,7 +14,7 @@ const About = () => {
   const typingSpeed = 10; // Adjust the typing speed as needed
   const eraseDelay = 3000;
   const paragraphHeight = 70; // Adjust the height as needed
-  const initialDelay = 1000; // Adjust the initial delay time in milliseconds
+  const initialDelay = 500; // Adjust the initial delay time in milliseconds
 
   useEffect(() => {
     let lineIndex = 0;
