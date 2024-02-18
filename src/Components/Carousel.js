@@ -104,20 +104,6 @@ const Carousel = () => {
     });
   };
 
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        playerRefs.current.forEach(ref => ref.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'));
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []);
-
   return (
     <Container>
       <Title>Project highlights</Title>
@@ -162,8 +148,6 @@ const PlayOnInView = ({ index, playVideo, currentPosition }) => {
   useEffect(() => {
     if (inView && currentPosition === index) {
       playVideo(index);
-    } else if (!inView && currentPosition === index) {
-      playVideo(-1); // Pause video when out of view
     }
   }, [inView, index, playVideo, currentPosition]);
 
