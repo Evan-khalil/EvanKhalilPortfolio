@@ -13,7 +13,7 @@ function CircularMenu() {
   return (
     <div className={`circular-menu ${isActive ? 'active' : ''}`}>
       <a className="floating-btn" onClick={toggleMenu}>
-        <i className={`fa ${isActive ? 'fa-bars' : 'fa-plus'}`}></i>
+        <i className={`fa ${isActive ? 'fa-bars' : 'fa-bars'}`}></i>
       </a>
       <menu className="items-wrapper">
         <Link to="about" smooth={true} duration={500} className="menu-item fa fa-info-circle"></Link>

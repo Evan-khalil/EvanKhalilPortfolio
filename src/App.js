@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Education from './Components/Education';
 import Carousel from './Components/Carousel';
+import Skills from './Components/Skills';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <About/>
       <Education/>
       <Carousel/>
+      <Skills/>
         <div className='wave'>
           
         </div>
