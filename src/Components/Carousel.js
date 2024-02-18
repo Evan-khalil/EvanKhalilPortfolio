@@ -34,7 +34,7 @@ const CarouselContainer = styled.main`
 
 const Item = styled.div`
   position: absolute;
-  width: 350px; /* Adjusted width */
+  width: 350px;
   height: 400px;
   background-color: coral;
   transition: all 0.25s linear;
@@ -46,7 +46,7 @@ const Item = styled.div`
 const NextButton = styled.button`
   position: absolute;
   top: 50%;
-  right: 5%; /* Adjusted position */
+  right: 5%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
@@ -58,7 +58,7 @@ const NextButton = styled.button`
 const PrevButton = styled.button`
   position: absolute;
   top: 50%;
-  left: 5%; /* Adjusted position */
+  left: 5%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
@@ -125,9 +125,9 @@ const Carousel = () => {
             <iframe
               ref={el => playerRefs.current[index] = el}
               title={`Video ${index + 1}`}
-              width="350" /* Adjusted width */
+              width="350"
               height="400"
-              src={video}
+              src={video + "&autoplay=0"}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
