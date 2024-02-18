@@ -19,7 +19,7 @@ function CircularMenu() {
         <Link to="about" smooth={true} duration={500} className="menu-item fa fa-info-circle"></Link>
         <Link to="timeline" smooth={true} duration={500} className="menu-item fa fa-graduation-cap"></Link>
         <Link to="Projects" smooth={true} duration={500} className="menu-item fa fa-folder-open"></Link>
-        <Link to="skills" smooth={true} duration={500} className="menu-item fa fa-cogs"></Link>
+        <Link to="#" smooth={true} duration={500} className="menu-item fa fa-cogs"></Link>
       </menu>
     </div>
   );

@@ -77,7 +77,6 @@ section#timeline {
     right: -5px;
     width: 10px;
     height: 10px;
-    -webkit-transform: rotate(-45deg);
   }
   
   section#timeline article div.inner p {
