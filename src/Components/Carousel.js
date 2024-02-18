@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { useInView } from 'react-intersection-observer';
 
 const Container = styled.div`
   height: 600px;
@@ -80,38 +81,25 @@ const videos = [
 ];
 
 const Carousel = () => {
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const playerRefs = useRef([]);
-
-  useEffect(() => {
-    // Set initial position to the middle index
-    setCurrentPosition(Math.floor(videos.length / 2));
-  }, []);
 
   const handleNextClick = () => {
     const nextPosition = currentPosition === videos.length - 1 ? 0 : currentPosition + 1;
     setCurrentPosition(nextPosition);
-    playVideo(nextPosition);
   };
 
   const handlePrevClick = () => {
     const prevPosition = currentPosition === 0 ? videos.length - 1 : currentPosition - 1;
     setCurrentPosition(prevPosition);
-    playVideo(prevPosition);
   };
 
   const playVideo = (index) => {
-    playerRefs.current.forEach((ref, i) => {
-      if (ref && i === index) {
-        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-        const isSmallScreen = window.innerWidth <= 768; // Adjust this threshold if needed
-        if (!isMobile && !isSmallScreen) {
-          ref.src = videos[index] + "&autoplay=1";
-        } else {
-          ref.src = videos[index]; // Autoplay may not work on mobile devices or small screens
-        }
-      } else if (ref) {
-        ref.src = videos[i];
+    playerRefs.current.forEach((ref, idx) => {
+      if (idx === index) {
+        ref.src = videos[index] + "&autoplay=1";
+      } else {
+        ref.src = videos[idx];
       }
     });
   };
@@ -124,7 +112,6 @@ const Carousel = () => {
           <Item
             key={index}
             className="item"
-            onClick={() => setCurrentPosition(index)}
             position={index}
             currentPosition={currentPosition}
           >
@@ -135,9 +122,14 @@ const Carousel = () => {
               height="400"
               src={video}
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
+            <PlayOnInView
+              index={index}
+              playVideo={playVideo}
+              currentPosition={currentPosition}
+            />
           </Item>
         ))}
         <NextButton onClick={handleNextClick}>{'>'}</NextButton>
@@ -145,6 +137,21 @@ const Carousel = () => {
       </CarouselContainer>
     </Container>
   );
+};
+
+const PlayOnInView = ({ index, playVideo, currentPosition }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5 // Play video when 50% visible
+  });
+
+  useEffect(() => {
+    if (inView && currentPosition === index) {
+      playVideo(index);
+    }
+  }, [inView, index, playVideo, currentPosition]);
+
+  return <div ref={ref}></div>;
 };
 
 export default Carousel;
