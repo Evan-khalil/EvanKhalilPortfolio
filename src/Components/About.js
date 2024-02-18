@@ -16,40 +16,47 @@ const About = () => {
   const paragraphHeight = 70; // Adjust the height as needed
 
   useEffect(() => {
-    if (!pageLoaded) return;
-
     let lineIndex = 0;
     let charIndex = 0;
     let eraseTimer;
+    let animationFrame;
 
     const typeLine = () => {
+      setText(aboutLines[lineIndex].substring(0, charIndex));
+      charIndex++;
+
       if (charIndex <= aboutLines[lineIndex].length) {
-        setText(aboutLines[lineIndex].substring(0, charIndex));
-        charIndex++;
-        setTimeout(typeLine, typingSpeed);
+        animationFrame = requestAnimationFrame(typeLine);
       } else {
         eraseTimer = setTimeout(eraseLine, eraseDelay);
       }
     };
 
     const eraseLine = () => {
+      setText(aboutLines[lineIndex].substring(0, charIndex));
+      charIndex--;
+
       if (charIndex >= 0) {
-        setText(aboutLines[lineIndex].substring(0, charIndex));
-        charIndex--;
-        setTimeout(eraseLine, typingSpeed);
+        animationFrame = requestAnimationFrame(eraseLine);
       } else {
-        lineIndex++;
+        lineIndex = (lineIndex + 1) % aboutLines.length;
         charIndex = 0;
-        if (lineIndex >= aboutLines.length) {
-          lineIndex = 0;
-        }
-        setTimeout(typeLine, typingSpeed);
+        animationFrame = requestAnimationFrame(typeLine);
       }
     };
 
-    typeLine();
+    const startTypewriter = () => {
+      if (pageLoaded) {
+        typeLine();
+      }
+    };
 
-    return () => clearTimeout(eraseTimer);
+    startTypewriter();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      clearTimeout(eraseTimer);
+    };
   }, [pageLoaded]);
 
   useEffect(() => {
