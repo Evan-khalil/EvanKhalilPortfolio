@@ -3,6 +3,7 @@ import './About.css';
 
 const About = () => {
   const [text, setText] = useState('');
+  const [pageLoaded, setPageLoaded] = useState(false); // Track whether the page has loaded
   const aboutLines = [
     "Welcome to my portfolio website! My name is Evan Khalil and I am a recent graduate of the Information Systems program at Örebro University",
     "I am excited to embark on my career as a system developer and am eager to take my first step in the field",
@@ -14,6 +15,8 @@ const About = () => {
   const eraseDelay = 3000;
 
   useEffect(() => {
+    if (!pageLoaded) return; // If the page hasn't loaded, do nothing
+
     let lineIndex = 0;
     let charIndex = 0;
     let eraseTimer;
@@ -46,6 +49,11 @@ const About = () => {
     typeLine();
 
     return () => clearTimeout(eraseTimer);
+  }, [pageLoaded]); // Run the effect when pageLoaded changes
+
+  useEffect(() => {
+    // Set pageLoaded to true when the component mounts
+    setPageLoaded(true);
   }, []);
 
   return (
