@@ -1,7 +1,7 @@
 // CircularMenu.js
 import React, { useState } from 'react';
 import { Link } from 'react-scroll';
-import './navbar.css';
+import './Navbar.css';
 
 function CircularMenu() {
   const [isActive, setIsActive] = useState(false);
