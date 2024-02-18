@@ -8,26 +8,21 @@
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1300px; /* Updated max-width */
   margin: 0 auto;
 }
 
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-#about{
+#about {
   color: white;
 }
 
-#about-text{
+#about-text {
   font-size: large;
 }
 
 .typewriter {
   padding-top: 2%;
-  padding-bottom: 30%;
+  padding-bottom: 30%; /* Default padding for laptops and PCs */
   color: white;
   font-family: monospace;
   overflow: hidden;
@@ -48,3 +43,19 @@
   from, to { opacity: 1 }
   50% { opacity: 0 }
 }
+
+/* Media Queries for different screen sizes */
+@media only screen and (max-width: 850px) {
+  /* Tablets and iPads */
+  .typewriter {
+    padding-bottom: 75% !important; /* Added !important */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* Phones */
+  .typewriter {
+    padding-bottom: 160% !important; /* Added !important */
+  }
+}
+
