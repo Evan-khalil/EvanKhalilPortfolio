@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -53,21 +53,6 @@ const NextButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   z-index: 10; /* Ensure it's above the items */
-  
-  /* Blinking animation */
-  animation: blink 1s infinite;
-
-  @keyframes blink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 `;
 
 const PrevButton = styled.button`
@@ -80,41 +65,23 @@ const PrevButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   z-index: 10; /* Ensure it's above the items */
-  
-  /* Blinking animation */
-  animation: blink 1s infinite;
-
-  @keyframes blink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 `;
-const getYouTubeEmbedUrl = (url) => {
-  const videoId = url.split('v=')[1];
-  return `https://www.youtube.com/embed/${videoId}`;
-};
 
 const videos = [
-    "https://www.youtube.com/embed/5j5ynQMiqec?si=vWnmlyIw-hicCvlB",
-    "https://www.youtube.com/embed/1m4SZ1GNv8k?si=QxA4x3HMt83yhaL8",
-    "https://www.youtube.com/embed/0Kd2BzR85vs?si=5T6QqPYrYfPgR8fD",
-    "https://www.youtube.com/embed/D_mgwp8YlwU?si=BkcenFlap7j3DBMo",
-    "https://www.youtube.com/embed/s_iTbsBj3dc?si=u-1pQNbk_Lpm99KW",
-    "https://www.youtube.com/embed/bBdxQVK13Os?si=8IkAHuaWnHmcl7bX", 
-    "https://www.youtube.com/embed/YJTSEMQSWj4?si=-LvcZB3wI3v6TcD-",
-    "https://www.youtube.com/embed/M7zoKUPLPbc?si=X31KXa8QqXF1OcUk",
-    "https://www.youtube.com/embed/gSwQwyqYXuU?si=B-RCMoLV8jNWx_Cp"
-    ];
-    
+  "https://www.youtube.com/embed/5j5ynQMiqec?si=vWnmlyIw-hicCvlB",
+  "https://www.youtube.com/embed/1m4SZ1GNv8k?si=QxA4x3HMt83yhaL8",
+  "https://www.youtube.com/embed/0Kd2BzR85vs?si=5T6QqPYrYfPgR8fD",
+  "https://www.youtube.com/embed/D_mgwp8YlwU?si=BkcenFlap7j3DBMo",
+  "https://www.youtube.com/embed/s_iTbsBj3dc?si=u-1pQNbk_Lpm99KW",
+  "https://www.youtube.com/embed/bBdxQVK13Os?si=8IkAHuaWnHmcl7bX", 
+  "https://www.youtube.com/embed/YJTSEMQSWj4?si=-LvcZB3wI3v6TcD-",
+  "https://www.youtube.com/embed/M7zoKUPLPbc?si=X31KXa8QqXF1OcUk",
+  "https://www.youtube.com/embed/gSwQwyqYXuU?si=B-RCMoLV8jNWx_Cp"
+];
+
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
+  const playerRefs = useRef([]);
 
   useEffect(() => {
     // Set initial position to the middle index
@@ -122,11 +89,25 @@ const Carousel = () => {
   }, []);
 
   const handleNextClick = () => {
-    setCurrentPosition(currentPosition === videos.length - 1 ? 0 : currentPosition + 1);
+    const nextPosition = currentPosition === videos.length - 1 ? 0 : currentPosition + 1;
+    setCurrentPosition(nextPosition);
+    playVideo(nextPosition);
   };
 
   const handlePrevClick = () => {
-    setCurrentPosition(currentPosition === 0 ? videos.length - 1 : currentPosition - 1);
+    const prevPosition = currentPosition === 0 ? videos.length - 1 : currentPosition - 1;
+    setCurrentPosition(prevPosition);
+    playVideo(prevPosition);
+  };
+
+  const playVideo = (index) => {
+    playerRefs.current.forEach((ref, i) => {
+      if (ref && i === index) {
+        ref.src = videos[index] + "&autoplay=1";
+      } else if (ref) {
+        ref.src = videos[i];
+      }
+    });
   };
 
   return (
@@ -142,6 +123,7 @@ const Carousel = () => {
             currentPosition={currentPosition}
           >
             <iframe
+              ref={el => playerRefs.current[index] = el}
               title={`Video ${index + 1}`}
               width="300"
               height="400"
