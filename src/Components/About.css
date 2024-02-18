@@ -5,7 +5,6 @@
   padding: 50px 20px; 
   box-sizing: border-box;
   text-align: center;
-
 }
 
 .container {
@@ -17,11 +16,35 @@
   max-width: 1300px;
   margin: 0 auto;
 }
+
 #about{
   color: white;
 }
+
 #about-text{
   font-size: large;
 }
 
-  
+.typewriter {
+  padding-top: 2%;
+  padding-bottom: 30%;
+  color: white;
+  font-family: monospace;
+  overflow: hidden;
+  white-space: pre-line;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  word-wrap: break-word;
+  font-size: 16px;
+}
+
+.typewriter:after {
+  color: orange;
+  content: "|";
+  animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
+}

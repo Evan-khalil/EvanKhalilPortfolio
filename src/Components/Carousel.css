@@ -1,4 +1,3 @@
-
 .carousel {
     position: relative;
   }
@@ -33,7 +32,9 @@
     margin: 0;
     background-color: #337ab7;
   }
-  #Projects{
+  
+  #Projects {
     text-align: center;
     padding-top: 40%;
-}  
+  }
+  
