@@ -14,10 +14,7 @@ const SkillsSection = () => {
           <li className="sk-dis"><span>Prototyping</span></li>
             <li className="sk-cms"><span>3d-Modeling</span></li>
             <li className="sk-ani"><span>Animation</span></li>
-            <li className="more">
-              <input type="checkbox" id="more-con" /><label htmlFor="more-con"></label>
-              <div><span>PHOTO</span><span>API</span><span>MAPS</span><span>VIDEO</span><span>CHARTS</span><span>RWD</span></div>
-            </li>
+
           </ul>
         </div>
         <div>
@@ -29,10 +26,7 @@ const SkillsSection = () => {
             <li className="sk-not"><span>SSMS</span></li>
             <li className="sk-tri"><span>Maya</span></li>
             <li className="sk-wor"><span>UE</span></li>
-            <li className="more">
-              <input type="checkbox" id="more-pro" /><label htmlFor="more-pro"></label>
-              <div><span>JOOMLA</span><span>DRUPAL</span><span>JIRA</span><span>TRELLO</span><span>FILEZILLA</span><span>GIT</span></div>
-            </li>
+
           </ul>
         </div>
         <div>
@@ -44,13 +38,9 @@ const SkillsSection = () => {
             <li className="sk-jav"><span>JS</span></li>
             <li className="sk-php"><span>PHP</span></li>
             <li className="sk-sql"><span>SQL</span></li>
-            <li className="more">
-              <input type="checkbox" id="more-len" /><label htmlFor="more-len"></label>
-              <div><span>XHTML</span><span>XSL</span><span>XML</span><span>JSON</span><span>PUG</span><span>SASS</span></div>
-            </li>
+
           </ul>
         </div>
-        {/* Add more <div> for additional sections */}
       </div>
     </div>
   );
