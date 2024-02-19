@@ -4,6 +4,7 @@ import About from './Components/About';
 import Education from './Components/Education';
 import Carousel from './Components/Carousel';
 import Skills from './Components/Skills';
+import SocialIcons from './Components/SocialIcons';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Education/>
       <Carousel/>
       <Skills/>
+      <SocialIcons/>
         <div className='wave'>
           
         </div>
