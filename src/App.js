@@ -1,9 +1,8 @@
 import React from 'react';
 import Navbar from './Components/Navbar';
 import About from './Components/About';
-import Education from './Components/Education';
 import Carousel from './Components/Carousel';
-import Skills from './Components/Skills';
+import Skills from './Components/Container';
 import SocialIcons from './Components/SocialIcons';
 import './App.css';
 
@@ -13,7 +12,6 @@ function App() {
       <Navbar/>
       <main>
       <About/>
-      <Education/>
       <Carousel/>
       <Skills/>
       <SocialIcons/>
