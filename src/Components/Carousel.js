@@ -41,25 +41,16 @@ const Item = styled.div`
   background-color: coral;
   transition: all 0.25s linear;
   transform: ${props =>
-    `rotateY(calc(-10deg * ${props.position - props.currentPosition})) translateX(calc(-370px * ${props.position - props.currentPosition}))`};
+    `rotateY(calc(-10deg * ${props.position - props.currentPosition})) translateX(calc(-400px * ${props.position - props.currentPosition}))`};
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: pointer;
-  touch-action: pan-y; /* Allow touch events */
 `;
 
 const VideoContainer = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const NextPrevButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10; /* Ensure it's above the items */
+  touch-action: pan-y; /* Allow vertical scrolling */
+  user-select: none; /* Disable text selection */
 `;
 
 const videos = [
@@ -79,7 +70,25 @@ const Carousel = () => {
   const [startX, setStartX] = useState(0);
   const playerRefs = useRef([]);
 
-  const handleTouchMove = e => {
+  useEffect(() => {
+    // Load YouTube iframe API script asynchronously
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = initializeVideos;
+
+    return () => {
+      window.onYouTubeIframeAPIReady = null;
+    };
+  }, []);
+
+  const handleTouchStart = (e, index) => {
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e, index) => {
     const x = e.touches[0].clientX;
     const difference = startX - x;
     if (difference > 50) {
@@ -89,11 +98,11 @@ const Carousel = () => {
     }
   };
 
-  const handleMouseDown = e => {
+  const handleMouseDown = (e, index) => {
     setStartX(e.clientX);
   };
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e, index) => {
     if (startX) {
       const x = e.clientX;
       const difference = startX - x;
@@ -110,34 +119,6 @@ const Carousel = () => {
   const handleMouseUp = () => {
     setStartX(0);
   };
-
-  useEffect(() => {
-    // Load YouTube iframe API script asynchronously
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = initializeVideos;
-
-    return () => {
-      window.onYouTubeIframeAPIReady = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener('touchmove', handleTouchMove);
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  });
 
   const initializeVideos = () => {
     videos.forEach((video, index) => {
@@ -186,7 +167,14 @@ const Carousel = () => {
   return (
     <Container id="Projects">
       <Title>Project highlights</Title>
-      <CarouselContainer>
+      
+      <CarouselContainer
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
         {videos.map((video, index) => (
           <Item
             key={index}
@@ -196,19 +184,16 @@ const Carousel = () => {
             onClick={() => playVideo(index)}
           >
             <VideoContainer
-              onTouchStart={() => setStartX(window.innerWidth / 2)} // Use the middle of the screen as the start position
-            >
-              <div id={`player-${index}`} />
-            </VideoContainer>
+              id={`player-${index}`}
+              onTouchStart={e => handleTouchStart(e, index)}
+              onTouchMove={e => handleTouchMove(e, index)}
+              onMouseDown={e => handleMouseDown(e, index)}
+              onMouseMove={e => handleMouseMove(e, index)}
+              onMouseUp={handleMouseUp}
+            />
           </Item>
         ))}
       </CarouselContainer>
-      <NextPrevButton style={{ right: '5%' }} onClick={handleNextClick}>
-        Next
-      </NextPrevButton>
-      <NextPrevButton style={{ left: '5%' }} onClick={handlePrevClick}>
-        Previous
-      </NextPrevButton>
     </Container>
   );
 };
