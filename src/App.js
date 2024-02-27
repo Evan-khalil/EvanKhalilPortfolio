@@ -2,8 +2,9 @@ import React from 'react';
 import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Carousel from './Components/Carousel';
-import Skills from './Components/Container';
+import Skills from './Components/Skills';
 import SocialIcons from './Components/SocialIcons';
+import Edu from './Components/edu';
 import './App.css';
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
       <Navbar/>
       <main>
       <About/>
-      <Carousel/>
+      <Edu/>
       <Skills/>
+      <Carousel/>
+      
       <SocialIcons/>
         <div className='wave'>
           

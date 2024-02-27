@@ -80,7 +80,6 @@ const Fill = styled.div`
 const ProgramsContainer = () => {
   return (
     <Container>
-      {/* First Column */}
       <FirstColumn>
         <SkillBox>
           <Title>Visual Studio</Title>

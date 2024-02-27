@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
 
 const Container = styled.div`
   height: 600px;
@@ -10,6 +9,8 @@ const Container = styled.div`
   grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
   align-items: center;
   justify-items: center;
+  padding-top: 10%;
+  padding-bottom: 50%;
 `;
 
 const Title = styled.h1`
@@ -84,22 +85,60 @@ const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const playerRefs = useRef([]);
 
+  useEffect(() => {
+    // Load YouTube iframe API script asynchronously
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = initializeVideos;
+
+    return () => {
+      window.onYouTubeIframeAPIReady = null;
+    };
+  }, []);
+
+  const initializeVideos = () => {
+    videos.forEach((video, index) => {
+      const player = new window.YT.Player(`player-${index}`, {
+        height: '400',
+        width: '350',
+        videoId: video.split('embed/')[1].split('?')[0],
+        events: {
+          onReady: onPlayerReady,
+        },
+      });
+      playerRefs.current[index] = player;
+    });
+  };
+
+  const onPlayerReady = (event) => {
+    event.target.pauseVideo();
+  };
+
   const handleNextClick = () => {
     const nextPosition = currentPosition === videos.length - 1 ? 0 : currentPosition + 1;
     setCurrentPosition(nextPosition);
+    pauseOtherVideos(nextPosition);
   };
 
   const handlePrevClick = () => {
     const prevPosition = currentPosition === 0 ? videos.length - 1 : currentPosition - 1;
     setCurrentPosition(prevPosition);
+    pauseOtherVideos(prevPosition);
   };
 
   const playVideo = (index) => {
-    playerRefs.current.forEach((ref, idx) => {
-      if (idx === index) {
-        ref.src = videos[index] + "&autoplay=1";
-      } else {
-        ref.src = videos[idx];
+    const player = playerRefs.current[index];
+    player.playVideo();
+  };
+
+  const pauseOtherVideos = (currentPosition) => {
+    videos.forEach((_, index) => {
+      if (index !== currentPosition) {
+        const player = playerRefs.current[index];
+        player.pauseVideo();
       }
     });
   };
@@ -114,22 +153,9 @@ const Carousel = () => {
             className="item"
             position={index}
             currentPosition={currentPosition}
+            onClick={() => playVideo(index)}
           >
-            <iframe
-              ref={el => playerRefs.current[index] = el}
-              title={`Video ${index + 1}`}
-              width="350"
-              height="400"
-              src={video}
-              frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-            <PlayOnInView
-              index={index}
-              playVideo={playVideo}
-              currentPosition={currentPosition}
-            />
+            <div id={`player-${index}`} />
           </Item>
         ))}
         <NextButton onClick={handleNextClick}>{'>'}</NextButton>
@@ -137,21 +163,6 @@ const Carousel = () => {
       </CarouselContainer>
     </Container>
   );
-};
-
-const PlayOnInView = ({ index, playVideo, currentPosition }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5 // Play video when 50% visible
-  });
-
-  useEffect(() => {
-    if (inView && currentPosition === index) {
-      playVideo(index);
-    }
-  }, [inView, index, playVideo, currentPosition]);
-
-  return <div ref={ref}></div>;
 };
 
 export default Carousel;
