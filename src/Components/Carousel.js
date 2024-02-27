@@ -46,16 +46,6 @@ const Item = styled.div`
   cursor: pointer;
 `;
 
-const NextPrevButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10; /* Ensure it's above the items */
-`;
-
 const videos = [
   "https://www.youtube.com/embed/5j5ynQMiqec?si=vWnmlyIw-hicCvlB",
   "https://www.youtube.com/embed/1m4SZ1GNv8k?si=QxA4x3HMt83yhaL8",
@@ -102,6 +92,16 @@ const Carousel = () => {
       }
     };
 
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+    };
+  });
+
+  useEffect(() => {
     const handleMouseDown = e => {
       setStartX(e.clientX);
     };
@@ -124,15 +124,11 @@ const Carousel = () => {
       setStartX(0);
     };
 
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
@@ -199,12 +195,6 @@ const Carousel = () => {
           </Item>
         ))}
       </CarouselContainer>
-      <NextPrevButton style={{ right: '5%' }} onClick={handleNextClick}>
-        Next
-      </NextPrevButton>
-      <NextPrevButton style={{ left: '5%' }} onClick={handlePrevClick}>
-        Previous
-      </NextPrevButton>
     </Container>
   );
 };
