@@ -1,32 +1,35 @@
 import React from 'react';
-import './Skills.css'; // Import the CSS file
+import styled from 'styled-components';
+import './Skills.css';
 
-const Section = ({ title, graphText, tooltipText }) => {
+const Title = styled.h1`
+  grid-row: 1 / 2;
+  grid-column: 1 / 8;
+  text-align: center;
+  color: white;
+`;
+function SkillBadge({ src, alt }) {
   return (
-    <section className={`model-${title}`}>
-      <div className="graph">{graphText}</div>
-      <span className="tooltip" tooltip={tooltipText}>
-        {tooltipText}
-      </span>
-    </section>
-  );
-};
+    <div className="amg-badge">
+      <img src={src} alt={alt} />
 
-const Base = () => {
-  return (
-    <div className="base">
-      <Section title="1" graphText="HTML5" tooltipText="100%" />
-      <Section title="2" graphText="CSS3" tooltipText="100%" />
-      <section className="model-3">
-        <div className="multi-graph">
-          JavaScript
-          <div data-name="jQuery" className="graph jQuery"></div>
-          <div data-name="JavaScript" className="graph javaScript"></div>
-        </div>
-      </section>
-      <Section title="4" graphText="Photoshop" tooltipText="70%" />
     </div>
   );
-};
+}
 
-export default Base;
+function Skills() {
+  return (
+    <div id="skills" className="container-fluid amg-skills">
+      <Title>Key Skills</Title>
+      <div className="row amg-badge-collection">
+        <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" />
+        <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" />
+        <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" />
+        <SkillBadge src="./badges/csharp-svgrepo-com.svg" alt="C#" />
+        <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" />
+      </div>
+    </div>
+  );
+}
+
+export default Skills;

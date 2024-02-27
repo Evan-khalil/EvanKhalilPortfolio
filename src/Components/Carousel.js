@@ -40,31 +40,18 @@ const Item = styled.div`
   height: 400px;
   background-color: coral;
   transition: all 0.25s linear;
-  transform: ${props => `rotateY(calc(-10deg * ${props.position - props.currentPosition})) translateX(calc(-370px * ${props.position - props.currentPosition}))`};
+  transform: ${props =>
+    `rotateY(calc(-10deg * ${props.position - props.currentPosition})) translateX(calc(-370px * ${props.position - props.currentPosition}))`};
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: pointer;
 `;
 
-const NextButton = styled.button`
+const NextPrevButton = styled.button`
   position: absolute;
   top: 50%;
-  right: 5%;
   transform: translateY(-50%);
-  background: transparent;
+  background-color: transparent;
   border: none;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 10; /* Ensure it's above the items */
-`;
-
-const PrevButton = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  font-size: 24px;
   cursor: pointer;
   z-index: 10; /* Ensure it's above the items */
 `;
@@ -83,6 +70,7 @@ const videos = [
 
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
+  const [startX, setStartX] = useState(0);
   const playerRefs = useRef([]);
 
   useEffect(() => {
@@ -99,6 +87,58 @@ const Carousel = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleTouchStart = e => {
+      setStartX(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = e => {
+      const x = e.touches[0].clientX;
+      const difference = startX - x;
+      if (difference > 50) {
+        handlePrevClick();
+      } else if (difference < -50) {
+        handleNextClick();
+      }
+    };
+
+    const handleMouseDown = e => {
+      setStartX(e.clientX);
+    };
+
+    const handleMouseMove = e => {
+      if (startX) {
+        const x = e.clientX;
+        const difference = startX - x;
+        if (difference > 50) {
+          handlePrevClick();
+          setStartX(0);
+        } else if (difference < -50) {
+          handleNextClick();
+          setStartX(0);
+        }
+      }
+    };
+
+    const handleMouseUp = () => {
+      setStartX(0);
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  });
+
   const initializeVideos = () => {
     videos.forEach((video, index) => {
       const player = new window.YT.Player(`player-${index}`, {
@@ -113,7 +153,7 @@ const Carousel = () => {
     });
   };
 
-  const onPlayerReady = (event) => {
+  const onPlayerReady = event => {
     event.target.pauseVideo();
   };
 
@@ -129,12 +169,12 @@ const Carousel = () => {
     pauseOtherVideos(prevPosition);
   };
 
-  const playVideo = (index) => {
+  const playVideo = index => {
     const player = playerRefs.current[index];
     player.playVideo();
   };
 
-  const pauseOtherVideos = (currentPosition) => {
+  const pauseOtherVideos = currentPosition => {
     videos.forEach((_, index) => {
       if (index !== currentPosition) {
         const player = playerRefs.current[index];
@@ -144,7 +184,7 @@ const Carousel = () => {
   };
 
   return (
-    <Container id='Projects'>
+    <Container id="Projects">
       <Title>Project highlights</Title>
       <CarouselContainer>
         {videos.map((video, index) => (
@@ -158,9 +198,13 @@ const Carousel = () => {
             <div id={`player-${index}`} />
           </Item>
         ))}
-        <NextButton onClick={handleNextClick}>{'>'}</NextButton>
-        <PrevButton onClick={handlePrevClick}>{'<'}</PrevButton>
       </CarouselContainer>
+      <NextPrevButton style={{ right: '5%' }} onClick={handleNextClick}>
+        Next
+      </NextPrevButton>
+      <NextPrevButton style={{ left: '5%' }} onClick={handlePrevClick}>
+        Previous
+      </NextPrevButton>
     </Container>
   );
 };
