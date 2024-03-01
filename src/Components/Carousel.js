@@ -32,7 +32,7 @@ const CarouselContainer = styled.main`
   transform-style: preserve-3d;
   perspective: 600px;
   position: relative;
-  user-select: none;
+  user-select: none; /* Disable text selection */
 `;
 
 const Item = styled.div`
@@ -40,7 +40,7 @@ const Item = styled.div`
   width: 300px; /* Adjusted width */
   height: 400px; /* Adjusted height */
   background-color: coral;
-  transition: transform 0.3s ease; /* Adjust transition timing for smoother animation */
+  transition: transform 0.2s ease; /* Adjust transition timing for smoother animation */
   transform: ${props =>
     `rotateY(calc(10deg * ${props.currentPosition - props.position})) translateX(calc(350px * ${props.currentPosition - props.position}))`}; /* Adjusted translation */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
@@ -51,7 +51,6 @@ const VideoContainer = styled.video`
   width: 100%;
   height: 100%;
   touch-action: pan-y; /* Allow vertical scrolling */
-  user-select: none; /* Disable text selection */
   background-color: black; /* Set background color to black */
 `;
 
@@ -62,13 +61,14 @@ const VideoLink = styled.a`
   text-decoration: none;
   margin-top: 10px;
   font-size: 16px;
-  border: 2px solid white; /* Add border */
-  padding: 8px 15px; /* Adjust padding */
-  border-radius: 20px; /* Adjust border-radius */
-  transition: background-color 0.3s, color 0.3s; /* Add transition */
+  padding: 10px 20px;
+  background-image: linear-gradient(to right, #ff512f, #f09819);
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
   &:hover {
-    background-color: white;
-    color: black;
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -139,7 +139,7 @@ const Carousel = () => {
 
     const x = e.touches[0].clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 2000; // Adjust divisor to control swiping speed
+    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
 
     // Ensure the carousel doesn't swipe beyond the first or last item
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
@@ -168,7 +168,7 @@ const Carousel = () => {
 
     const x = e.clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 2000; // Adjust divisor to control swiping speed
+    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
 
     // Ensure the carousel doesn't swipe beyond the first or last item
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
