@@ -36,132 +36,172 @@ const CarouselContainer = styled.main`
 
 const Item = styled.div`
   position: absolute;
-  width: 350px;
-  height: 400px;
+  width: 250px; /* Adjusted width */
+  height: 300px; /* Adjusted height */
   background-color: coral;
-  transition: all 0.25s linear;
+  transition: transform 0.5s ease; /* Adjust transition timing for smoother animation */
   transform: ${props =>
-    `rotateY(calc(-10deg * ${props.position - props.currentPosition})) translateX(calc(-400px * ${props.position - props.currentPosition}))`};
+    `rotateY(calc(10deg * ${props.currentPosition - props.position})) translateX(calc(300px * ${props.currentPosition - props.position}))`}; /* Adjusted translation */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: pointer;
 `;
 
-const VideoContainer = styled.div`
+const VideoContainer = styled.video`
   width: 100%;
   height: 100%;
   touch-action: pan-y; /* Allow vertical scrolling */
   user-select: none; /* Disable text selection */
+  background-color: black; /* Set background color to black */
+`;
+
+const VideoLink = styled.a`
+  display: block;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 16px;
 `;
 
 const videos = [
-  "https://www.youtube.com/embed/5j5ynQMiqec?si=vWnmlyIw-hicCvlB",
-  "https://www.youtube.com/embed/1m4SZ1GNv8k?si=QxA4x3HMt83yhaL8",
-  "https://www.youtube.com/embed/0Kd2BzR85vs?si=5T6QqPYrYfPgR8fD",
-  "https://www.youtube.com/embed/D_mgwp8YlwU?si=BkcenFlap7j3DBMo",
-  "https://www.youtube.com/embed/s_iTbsBj3dc?si=u-1pQNbk_Lpm99KW",
-  "https://www.youtube.com/embed/bBdxQVK13Os?si=8IkAHuaWnHmcl7bX", 
-  "https://www.youtube.com/embed/YJTSEMQSWj4?si=-LvcZB3wI3v6TcD-",
-  "https://www.youtube.com/embed/M7zoKUPLPbc?si=X31KXa8QqXF1OcUk",
-  "https://www.youtube.com/embed/gSwQwyqYXuU?si=B-RCMoLV8jNWx_Cp"
+  {
+    src: "./videos/3D character model and animation.mp4",
+    youtubeLink: "https://youtu.be/5j5ynQMiqec" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/Asp.Net Core.mp4",
+    youtubeLink: "https://youtu.be/0Kd2BzR85vs" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/Diagram Generator.mp4",
+    youtubeLink: "https://youtu.be/M7zoKUPLPbc" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/Media player.mp4",
+    youtubeLink: "https://youtu.be/s_iTbsBj3dc" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/Quiz Manager.mp4",
+    youtubeLink: "https://youtu.be/YJTSEMQSWj4" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/TcpListener and TcpClient.mp4",
+    youtubeLink: "https://youtu.be/bBdxQVK13Os" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/TicTacToe TcpListener & TcpClient.mp4",
+    youtubeLink: "https://youtu.be/1m4SZ1GNv8k" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/Unreal engine Gameplay.mp4",
+    youtubeLink: "https://youtu.be/gSwQwyqYXuU" // Add YouTube link for this video
+  },
+  {
+    src: "./videos/UDP Sockets.mp4",
+    youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
+  }
 ];
 
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [startX, setStartX] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(-1); // Track active video
   const playerRefs = useRef([]);
 
   useEffect(() => {
-    // Load YouTube iframe API script asynchronously
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = initializeVideos;
-
-    return () => {
-      window.onYouTubeIframeAPIReady = null;
-    };
+    initializeVideos();
   }, []);
-
-  const handleTouchStart = (e, index) => {
-    setStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchMove = (e, index) => {
-    const x = e.touches[0].clientX;
-    const difference = startX - x;
-    if (difference > 50) {
-      handlePrevClick();
-    } else if (difference < -50) {
-      handleNextClick();
-    }
-  };
-
-  const handleMouseDown = (e, index) => {
-    setStartX(e.clientX);
-  };
-
-  const handleMouseMove = (e, index) => {
-    if (startX) {
-      const x = e.clientX;
-      const difference = startX - x;
-      if (difference > 50) {
-        handlePrevClick();
-        setStartX(0);
-      } else if (difference < -50) {
-        handleNextClick();
-        setStartX(0);
-      }
-    }
-  };
-
-  const handleMouseUp = () => {
-    setStartX(0);
-  };
 
   const initializeVideos = () => {
     videos.forEach((video, index) => {
-      const player = new window.YT.Player(`player-${index}`, {
-        height: '400',
-        width: '350',
-        videoId: video.split('embed/')[1].split('?')[0],
-        events: {
-          onReady: onPlayerReady,
-        },
-      });
-      playerRefs.current[index] = player;
+      const player = playerRefs.current[index];
+      player.load();
     });
   };
 
-  const onPlayerReady = event => {
-    event.target.pauseVideo();
+  const handleTouchStart = e => {
+    setStartX(e.touches[0].clientX);
+    setIsSwiping(true);
+    pauseAllVideosExcept(-1);
   };
 
-  const handleNextClick = () => {
-    const nextPosition = currentPosition === videos.length - 1 ? 0 : currentPosition + 1;
-    setCurrentPosition(nextPosition);
-    pauseOtherVideos(nextPosition);
+  const handleTouchMove = e => {
+    if (!isSwiping) return;
+
+    const x = e.touches[0].clientX;
+    const difference = x - startX;
+    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
+
+    // Ensure the carousel doesn't swipe beyond the first or last item
+    newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
+
+    setCurrentPosition(newPosition);
+    pauseAllVideosExcept(-1);
   };
 
-  const handlePrevClick = () => {
-    const prevPosition = currentPosition === 0 ? videos.length - 1 : currentPosition - 1;
-    setCurrentPosition(prevPosition);
-    pauseOtherVideos(prevPosition);
+  const handleTouchEnd = () => {
+    setIsSwiping(false);
+
+    // Snap to the nearest video
+    const snappedPosition = Math.round(currentPosition);
+    setCurrentPosition(snappedPosition);
+    pauseAllVideosExcept(-1);
   };
 
-  const playVideo = index => {
+  const handleMouseDown = e => {
+    setStartX(e.clientX);
+    setIsSwiping(true);
+    pauseAllVideosExcept(-1);
+  };
+
+  const handleMouseMove = e => {
+    if (!isSwiping) return;
+
+    const x = e.clientX;
+    const difference = x - startX;
+    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
+
+    // Ensure the carousel doesn't swipe beyond the first or last item
+    newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
+
+    setCurrentPosition(newPosition);
+    pauseAllVideosExcept(-1);
+  };
+
+  const handleMouseUp = () => {
+    setIsSwiping(false);
+
+    // Snap to the nearest video
+    const snappedPosition = Math.round(currentPosition);
+    setCurrentPosition(snappedPosition);
+    pauseAllVideosExcept(-1);
+  };
+
+  const handleItemClick = index => {
+    // Toggle play/pause for the clicked video
     const player = playerRefs.current[index];
-    player.playVideo();
+    if (activeVideoIndex === index) {
+      if (player.paused) {
+        player.play();
+      } else {
+        player.pause();
+      }
+    } else {
+      // Pause all videos except the clicked one
+      pauseAllVideosExcept(index);
+      player.play();
+      setActiveVideoIndex(index);
+    }
   };
 
-  const pauseOtherVideos = currentPosition => {
-    videos.forEach((_, index) => {
-      if (index !== currentPosition) {
-        const player = playerRefs.current[index];
-        player.pauseVideo();
+  const pauseAllVideosExcept = indexToKeepPlaying => {
+    playerRefs.current.forEach((player, index) => {
+      if (index !== indexToKeepPlaying) {
+        player.pause();
       }
     });
+    setActiveVideoIndex(indexToKeepPlaying);
   };
 
   return (
@@ -171,6 +211,7 @@ const Carousel = () => {
       <CarouselContainer
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -181,16 +222,17 @@ const Carousel = () => {
             className="item"
             position={index}
             currentPosition={currentPosition}
-            onClick={() => playVideo(index)}
+            onClick={() => handleItemClick(index)}
           >
             <VideoContainer
-              id={`player-${index}`}
-              onTouchStart={e => handleTouchStart(e, index)}
-              onTouchMove={e => handleTouchMove(e, index)}
-              onMouseDown={e => handleMouseDown(e, index)}
-              onMouseMove={e => handleMouseMove(e, index)}
-              onMouseUp={handleMouseUp}
-            />
+              ref={ref => playerRefs.current[index] = ref}
+              controls
+              controlsList="nodownload" // Prevent download button from appearing
+            >
+              <source src={video.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </VideoContainer>
+            <VideoLink href={video.youtubeLink} target="_blank">Watch on YouTube</VideoLink>
           </Item>
         ))}
       </CarouselContainer>
