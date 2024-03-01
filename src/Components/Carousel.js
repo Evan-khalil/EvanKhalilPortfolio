@@ -40,7 +40,7 @@ const Item = styled.div`
   width: 300px; /* Adjusted width */
   height: 400px; /* Adjusted height */
   background-color: coral;
-  transition: transform 0.2s ease; /* Adjust transition timing for smoother animation */
+  transition: transform 0.6s ease; /* Adjusted transition timing for slower animation */
   transform: ${props =>
     `rotateY(calc(10deg * ${props.currentPosition - props.position})) translateX(calc(350px * ${props.currentPosition - props.position}))`}; /* Adjusted translation */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
@@ -110,12 +110,14 @@ const videos = [
     youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
   }
 ];
+
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
-  const [activeVideoIndex, setActiveVideoIndex] = useState(-1); // Track active video
+  const [activeVideoIndex, setActiveVideoIndex] = useState(-1);
   const playerRefs = useRef([]);
+  const touchSensitivity = 15; // Adjust this factor for touch sensitivity
 
   useEffect(() => {
     initializeVideos();
@@ -139,19 +141,15 @@ const Carousel = () => {
 
     const x = e.touches[0].clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
+    let newPosition = currentPosition + difference / touchSensitivity; // Adjusted divisor for touch sensitivity
 
-    // Ensure the carousel doesn't swipe beyond the first or last item
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
-
     setCurrentPosition(newPosition);
     pauseAllVideosExcept(-1);
   };
 
   const handleTouchEnd = () => {
     setIsSwiping(false);
-
-    // Snap to the nearest video
     const snappedPosition = Math.round(currentPosition);
     setCurrentPosition(snappedPosition);
     pauseAllVideosExcept(-1);
@@ -168,26 +166,21 @@ const Carousel = () => {
 
     const x = e.clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 1000; // Adjust divisor to control swiping speed
+    let newPosition = currentPosition + difference / 500; // Adjusted divisor for desktop swiping
 
-    // Ensure the carousel doesn't swipe beyond the first or last item
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
-
     setCurrentPosition(newPosition);
     pauseAllVideosExcept(-1);
   };
 
   const handleMouseUp = () => {
     setIsSwiping(false);
-
-    // Snap to the nearest video
     const snappedPosition = Math.round(currentPosition);
     setCurrentPosition(snappedPosition);
     pauseAllVideosExcept(-1);
   };
 
   const handleItemClick = index => {
-    // Toggle play/pause for the clicked video
     const player = playerRefs.current[index];
     if (activeVideoIndex === index) {
       if (player.paused) {
@@ -196,7 +189,6 @@ const Carousel = () => {
         player.pause();
       }
     } else {
-      // Pause all videos except the clicked one
       pauseAllVideosExcept(index);
       player.play();
       setActiveVideoIndex(index);
@@ -235,7 +227,7 @@ const Carousel = () => {
             <VideoContainer
               ref={ref => playerRefs.current[index] = ref}
               controls
-              controlsList="nodownload" // Prevent download button from appearing
+              controlsList="nodownload"
             >
               <source src={video.src} type="video/mp4" />
               Your browser does not support the video tag.
