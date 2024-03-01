@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 const Container = styled.div`
   height: 600px;
   margin: 0;
@@ -40,7 +42,7 @@ const Item = styled.div`
   width: 300px; /* Adjusted width */
   height: 400px; /* Adjusted height */
   background-color: coral;
-  transition: transform 0.6s ease; /* Adjusted transition timing for slower animation */
+  transition: transform 0.4s ease; /* Adjusted transition timing for smoother animation */
   transform: ${props =>
     `rotateY(calc(10deg * ${props.currentPosition - props.position})) translateX(calc(350px * ${props.currentPosition - props.position}))`}; /* Adjusted translation */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
@@ -55,21 +57,34 @@ const VideoContainer = styled.video`
 `;
 
 const VideoLink = styled.a`
-  display: block;
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  margin-top: 10px;
+  background-color: white;
+  position: absolute;
+  bottom: -41px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
   font-size: 16px;
-  padding: 10px 20px;
-  background-image: linear-gradient(to right, #ff512f, #f09819);
-  border-radius: 25px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-radius: 50%;
+  border: none;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
   transition: all 0.3s ease;
+
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) rotate(180deg);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   }
+`;
+const YoutubeIcon = styled(FontAwesomeIcon)`
+
+  font-size: 5em;
+  color: #FF0000;
 `;
 
 const videos = [
@@ -117,7 +132,6 @@ const Carousel = () => {
   const [isSwiping, setIsSwiping] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(-1);
   const playerRefs = useRef([]);
-  const touchSensitivity = 15; // Adjust this factor for touch sensitivity
 
   useEffect(() => {
     initializeVideos();
@@ -141,7 +155,7 @@ const Carousel = () => {
 
     const x = e.touches[0].clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / touchSensitivity; // Adjusted divisor for touch sensitivity
+    let newPosition = currentPosition + difference / 500; // Adjusted divisor for slower swiping
 
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
     setCurrentPosition(newPosition);
@@ -166,7 +180,7 @@ const Carousel = () => {
 
     const x = e.clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 500; // Adjusted divisor for desktop swiping
+    let newPosition = currentPosition + difference / 500; // Adjusted divisor for slower swiping
 
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
     setCurrentPosition(newPosition);
@@ -232,7 +246,7 @@ const Carousel = () => {
               <source src={video.src} type="video/mp4" />
               Your browser does not support the video tag.
             </VideoContainer>
-            <VideoLink href={video.youtubeLink} target="_blank">Watch on YouTube</VideoLink>
+            <VideoLink href={video.youtubeLink} target="_blank"><YoutubeIcon icon={faYoutube} /></VideoLink>
           </Item>
         ))}
       </CarouselContainer>
