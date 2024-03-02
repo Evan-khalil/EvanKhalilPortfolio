@@ -1,312 +1,88 @@
-
-.wrapper {
-  
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  background: linear-gradient(45deg,#F17C58, #E94584, #24AADB , #27DBB1,#FFDC18, #FF3706);
-  background-size: 600% 100%;
-  animation: gradient 16s linear infinite;
-  animation-direction: alternate;
-  .intro {
-    padding: 60px 15px;
-    h1 {
-      text-align: center;
-      Color: #fff;
-    }
-  }
-}
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.fab {
-  
+.circular-menu {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease; 
   position: fixed;
-  z-index: 999;
-  margin-right: -18px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+}
+
+.menu-icon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  margin: 5px 0;
+}
+
+.menu-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(242, 242, 248); /* Blue background for demonstration */
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center;
-  transition: .25s;
-  &.active {
-    .fabTrigger {
-      transform: scale(1);
-      .icon {
-        background: transparent;
-        transition: background 0.3s ease;
-        &,
-        &:before,
-        &:after {
-          height: 3px;
-        }
-        &:before,
-        &:after {
-          width: 20px;
-          transform-origin: 50% 50%;
-          transition: all 100ms ease, 
-            width 100ms 100ms ease, 
-            transform 300ms 200ms cubic-bezier(0.28, 0.55, 0.385, 1.65);
-        }
-        &:before {
-          left: 50%;
-          transform: translateX(-50%) rotate(45deg);
-        }
-        &:after {
-          right: 50%;
-          transform: translateX(50%) rotate(-45deg);
-        }
-      }
-    }
-    .fabNav {
-      a {
-        opacity: 1;
-        visibility: visible;
-        transition: .35s cubic-bezier(.4,2.08,.55,1);
-      }
-    }
-    
-  }
-  .fabTrigger {
-    display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    width: 60px;
-    height: 70px;
-    color: #faf7f7;
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    border-radius:10px;
-    background: #f9f7fb9f;
-    transform: scale(0.675);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 0 rgba(108, 46, 185, 0.2);
-    transition: .35s cubic-bezier(.4,2.08,.55,1);
-    .icon {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: background 0.3s ease;
-      &,
-      &:before,
-      &:after {
-        position: absolute;
-        display: block;
-        background: #000;
-        width: 6px;
-        height: 6px;
-        border-radius: 10px;
-      }
-      &:before,
-      &:after {
-        content: '';
-        transition: all 100ms ease,
-          right 100ms 100ms ease,
-          left 100ms 100ms ease;
-      }
-      &:before {
-        left: -11px;
-        transform: translateX(-50%);
-      }
-      &:after {
-        right: -11px;
-        transform: translateX(50%);
-      }
+  color: #0c0101; /* White text color */
+}
 
-    }
-  }
-  .fabNav {
-    display: flex;
-    align-items: center;
-    a {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 12px;
-      width: 40px;
-      height: 40px;
-      font-family: 'Noto Sans', sans-serif;
-      outline: none;
-      border: 0;
-      text-decoration: none;
-      border-radius: 100px;
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 0 rgba(108, 46, 185, 0.2);
-      opacity: 0.0001;
-      visibility: hidden;
-      will-change: transform;
-      transition: .35s cubic-bezier(.4,2.08,.55,1);
-      &:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background-color: #fff;
-        transition: .25s;
-      }
-      i {
-        color: #000;
-        transition: .25s;
-      }
-      &:hover {
-        &:before {
-          background-color: #000;
-        }
-        i {
-          color: #fff;
-        }
-        .fabTooltip {
-          opacity: 1;
-          visibility: visible;
-        }
-      }
-    }
-  }
-  .fabTooltip {
-    
-    position: absolute;
-    align-items: center;
-      justify-content: center;
-    z-index: -2;
-    padding: 5px;
-    color: #FFF;
-    font-size: 12px;
-    border-radius: 5px;
-    background: rgba(#000, 0.8);
-    opacity: 0;
-    visibility: hidden;
-    cursor: default;
-    pointer-events: none;
-    transition: .5s;
-  }
+.active {
+  transform: translate(-50%, -50%) scale(1.5); 
+  background-color: rgb(229, 242, 149);
 }
 
 
-.fabVertical {
-  flex-direction: column;
-  top: 50%;
-  right: 15px;
-  transform: translate(0, -50%);
-  &.active {
-    .fabNav {
-      &.fabNav--left {
-        a {
-          left: 0;
-          transform: scale(1) translateX(0);
-        }
-      }
-      &.fabNav--right {
-        a {
-          right: 0;
-          transform: scale(1) translateX(0);
-        }
-      }
-    }
-  }
-  .fabItem {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the content horizontally */
-    margin: 12px 0;
-    &:hover {
-      .fabTooltip {
-        right: calc(100% + 10px);
-        transform: translate(0, -50%) scale(1);
-      }
-    }
-  }
-  
-  .fabTrigger {
-    margin: 12px 0;
-    justify-content: center;
-  }
-  .fabNav {
-    flex-direction: column;
-    a {
-      margin: 12px 0;
-      &:hover {
-        .fabTooltip {
-          right: calc(100% + 10px);
-          transform: translate(0, -50%) scale(1);
-        }
-      }
-    }
-    &.fabNav--left {
-      a {
-        left: 0;
-        transform: scale(0.8) translateY(10px);
-        &:nth-child(1) {
-          transition-delay: 0.3s;
-        }
-        &:nth-child(2) {
-          transition-delay: 0.2s;
-        }
-        &:nth-child(3) {
-          transition-delay: 0.1s;
-        }
-      }
-    }
-    &.fabNav--right {
-      a {
-        
-        left: 0%;
-        transform: scale(0.8) translateY(-10px);
-        &:nth-child(1) {
-          transition-delay: 0.1s;
-        }
-        &:nth-child(2) {
-          transition-delay: 0.2s;
-        }
-        &:nth-child(3) {
-          transition-delay: 0.3s;
-        }
-      }
-    }
-  }
-  .fabTooltip {
-    top: 50%;
-    right: 0;
-    transform-origin: center right;
-    transform: translate(0, -50%) scale(0);
-    justify-content: center;
-  }
-}
-.hamburger-icon {
-  display: block;
-  width: 30px;
-  height: 3px;
-  background-color: #000;
-  position: relative;
+.fabItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+  text-decoration: none;
+  color: #000000; 
+  transition: color 0.3s ease; 
 }
 
-.hamburger-icon::before,
-.hamburger-icon::after {
-  content: '';
+.fabItem:hover {
+  color: #070000; 
+}
+
+.fabTooltip {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
+  top: 50%;
+  right: calc(100% + 10px);
+  transform: translate(0, -50%) scale(0);
+  background-color: rgba(247, 241, 241, 0.8);
+  color: #100101;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.hamburger-icon::before {
-  top: -8px;
-}
-
-.hamburger-icon::after {
-  top: 8px;
+.fabItem:hover .fabTooltip {
+  transform: translate(0, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
 }

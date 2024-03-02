@@ -33,19 +33,19 @@ const CenteredFlipCards = () => {
         <Title> Education </Title>
         <div className="flip-container">
           <FlipCard
-            frontColor="#FFD700"
+            frontColor="#4a5d79"
             backTitle="Bachelor's programme in Information Systems"
             backContent="Knowledge about people, organizations, and how to develop technology to support them alongside learning the basics of systems analysis and software development. The program offers courses in object-oriented analysis and design, agile methods, interaction design, database management, and programming in C# and Java."
             additionalText="Örebro University" 
           />
           <FlipCard
-            frontColor="#87CEEB"
+            frontColor="#193741"
             backTitle="Programming for Internet"
             backContent="Gain expertise in using C# to program with supportive technologies, establish low-level connections to various servers, establish high-level connections to specialized servers like email, web, and database servers, and ensure security while communicating over the internet."
             additionalText="Stokholm University" 
           />
           <FlipCard
-            frontColor="#FFA07A"
+            frontColor="#3e5e63"
             backTitle="Web Development II"
             backContent="Learn to build sophisticated web-based systems using JavaScript and PHP for both client- and server-side programming in this course."
             additionalText="Stokholm University" 
@@ -54,7 +54,7 @@ const CenteredFlipCards = () => {
 
         <div className="flip-container">
           <div className="flip flip-vertical">
-            <div className="front" style={{ backgroundColor: "#20B2AA" }}>
+            <div className="front" style={{ backgroundColor: "#588184" }}>
               <h1 className="text-shadow">Programming in C#, III</h1>
             </div>
             <div className="back">
@@ -64,7 +64,7 @@ const CenteredFlipCards = () => {
             </div>
           </div>
           <div className="flip flip-vertical">
-            <div className="front" style={{ backgroundColor: "#FF69B4" }}>
+            <div className="front" style={{ backgroundColor: "#7ea996" }}>
               <h1 className="text-shadow">Computer Networks I</h1>
             </div>
             <div className="back">
@@ -74,7 +74,7 @@ const CenteredFlipCards = () => {
             </div>
           </div>
           <div className="flip flip-vertical">
-            <div className="front" style={{ backgroundColor: "#7B68EE" }}>
+            <div className="front" style={{ backgroundColor: "#90c5a7" }}>
               <h1 className="text-shadow">Game Development - 3D Modelling and Character Animation</h1>
             </div>
             <div className="back">

@@ -9,17 +9,15 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+<div class="center"></div>
+<Navbar />
       <main>
-      <About/>
-      <Edu/>
-      <Skills/>
-      <Carousel/>
-
-        <div className='wave'>
-          
-        </div>
+        <About />
+        <Edu />
+        <Skills />
+        <Carousel />
       </main>
+      
     </div>
   );
 }
