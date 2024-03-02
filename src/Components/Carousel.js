@@ -98,6 +98,14 @@ const VideoContainer = styled.video`
   height: 100%;
   touch-action: pan-y;
   background-color: black;
+  position: relative; /* Added position relative to contain the play icon */
+`;
+
+const PlayIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const VideoLink = styled.a`
@@ -168,7 +176,6 @@ const videos = [
     youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
   }
 ];
-
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [startX, setStartX] = useState(0);
@@ -303,6 +310,9 @@ const Carousel = () => {
               Your browser does not support the video tag.
             </VideoContainer>
             <VideoLink href={video.youtubeLink} target="_blank"><YoutubeIcon icon={faYoutube} /></VideoLink>
+            <PlayIcon>
+              <FontAwesomeIcon icon={['far', 'play-circle']} size="3x" />
+            </PlayIcon>
           </Item>
         ))}
       </CarouselContainer>
