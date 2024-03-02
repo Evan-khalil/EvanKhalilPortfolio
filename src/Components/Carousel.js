@@ -12,7 +12,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
   align-items: center;
   justify-items: center;
-  padding-top: 10%;
+  padding-top: 30%;
   padding-bottom: 50%;
   position: relative; /* Added position relative for arrow positioning */
 `;
@@ -22,6 +22,7 @@ const Title = styled.h1`
   grid-column: 1 / 8;
   text-align: center;
   color: white;
+  padding-bottom: 15%;
 `;
 
 const CarouselContainer = styled.main`
@@ -81,7 +82,7 @@ const RightArrow = styled(Arrow)`
 
 const Item = styled.div`
   position: absolute;
-  width: 300px;
+  width: 270px;
   height: 400px;
   background-color: coral;
   transition: transform 0.4s ease;
@@ -166,8 +167,10 @@ const videos = [
     youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
   }
 ];
+
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
+  const [showArrows, setShowArrows] = useState(true);
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(-1);
@@ -175,6 +178,30 @@ const Carousel = () => {
 
   useEffect(() => {
     initializeVideos();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setShowArrows(true);
+          setTimeout(() => {
+            setShowArrows(false);
+          }, 3000); // Hide arrows after 3 seconds
+        }
+      });
+    }, {
+      threshold: 0.5 // Trigger when 50% of the section is visible
+    });
+
+    const section = document.getElementById('Projects');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
   }, []);
 
   const initializeVideos = () => {
@@ -264,6 +291,10 @@ const Carousel = () => {
     }
   };
 
+  const handleItemTouch = index => {
+    handleItemClick(index);
+  };
+
   const pauseAllVideosExcept = indexToKeepPlaying => {
     playerRefs.current.forEach((player, index) => {
       if (index !== indexToKeepPlaying) {
@@ -288,13 +319,13 @@ const Carousel = () => {
           icon={faArrowLeft}
           className="arrow"
           onClick={handleLeftArrowClick}
-          visible={currentPosition < videos.length - 1} // Show/hide left arrow based on visibility
+          visible={currentPosition < videos.length - 1 && showArrows} // Show/hide left arrow based on visibility and showArrows state
         />
         <RightArrow
           icon={faArrowRight}
           className="arrow"
           onClick={handleRightArrowClick}
-          visible={currentPosition > 0} // Show/hide right arrow based on visibility
+          visible={currentPosition > 0 && showArrows} // Show/hide right arrow based on visibility and showArrows state
         />
         {videos.map((video, index) => (
           <Item
@@ -303,6 +334,7 @@ const Carousel = () => {
             position={index}
             currentPosition={currentPosition}
             onClick={() => handleItemClick(index)}
+            onTouchStart={() => handleItemTouch(index)}
           >
             <VideoContainer
               ref={ref => (playerRefs.current[index] = ref)}
