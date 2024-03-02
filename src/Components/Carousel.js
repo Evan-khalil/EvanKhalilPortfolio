@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 const Container = styled.div`
@@ -71,12 +71,13 @@ const Arrow = styled(FontAwesomeIcon)`
 
 const LeftArrow = styled(Arrow)`
   left: 22px;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; /* Show/hide left arrow based on visibility */
 `;
 
 const RightArrow = styled(Arrow)`
   right: 22px;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; /* Show/hide right arrow based on visibility */
 `;
-
 
 const Item = styled.div`
   position: absolute;
@@ -90,22 +91,11 @@ const Item = styled.div`
   cursor: grabbing;
 `;
 
-
-
-
 const VideoContainer = styled.video`
   width: 100%;
   height: 100%;
   touch-action: pan-y;
   background-color: black;
-  position: relative; /* Added position relative to contain the play icon */
-`;
-
-const PlayIcon = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const VideoLink = styled.a`
@@ -195,13 +185,17 @@ const Carousel = () => {
   };
 
   const handleLeftArrowClick = () => {
-    setCurrentPosition(currentPosition - 1);
-    pauseAllVideosExcept(-1);
+    if (currentPosition < videos.length - 1) {
+      setCurrentPosition(currentPosition + 1);
+      pauseAllVideosExcept(-1);
+    }
   };
 
   const handleRightArrowClick = () => {
-    setCurrentPosition(currentPosition + 1);
-    pauseAllVideosExcept(-1);
+    if (currentPosition > 0) {
+      setCurrentPosition(currentPosition - 1);
+      pauseAllVideosExcept(-1);
+    }
   };
 
   const handleTouchStart = e => {
@@ -269,7 +263,6 @@ const Carousel = () => {
       setActiveVideoIndex(index);
     }
   };
-  
 
   const pauseAllVideosExcept = indexToKeepPlaying => {
     playerRefs.current.forEach((player, index) => {
@@ -291,8 +284,18 @@ const Carousel = () => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        <LeftArrow icon={faArrowLeft} className="arrow" onClick={handleLeftArrowClick} />
-        <RightArrow icon={faArrowRight} className="arrow" onClick={handleRightArrowClick} />
+        <LeftArrow
+          icon={faArrowLeft}
+          className="arrow"
+          onClick={handleLeftArrowClick}
+          visible={currentPosition < videos.length - 1} // Show/hide left arrow based on visibility
+        />
+        <RightArrow
+          icon={faArrowRight}
+          className="arrow"
+          onClick={handleRightArrowClick}
+          visible={currentPosition > 0} // Show/hide right arrow based on visibility
+        />
         {videos.map((video, index) => (
           <Item
             key={index}
@@ -302,17 +305,16 @@ const Carousel = () => {
             onClick={() => handleItemClick(index)}
           >
             <VideoContainer
-              ref={ref => playerRefs.current[index] = ref}
+              ref={ref => (playerRefs.current[index] = ref)}
               controls
               controlsList="nodownload"
             >
               <source src={video.src} type="video/mp4" />
               Your browser does not support the video tag.
             </VideoContainer>
-            <VideoLink href={video.youtubeLink} target="_blank"><YoutubeIcon icon={faYoutube} /></VideoLink>
-            <PlayIcon>
-              <FontAwesomeIcon icon={['far', 'play-circle']} size="3x" />
-            </PlayIcon>
+            <VideoLink href={video.youtubeLink} target="_blank">
+              <YoutubeIcon icon={faYoutube} />
+            </VideoLink>
           </Item>
         ))}
       </CarouselContainer>
