@@ -87,7 +87,7 @@ function SkillBadge({ src, alt, customText }) {
 
 function Skills() {
   return (
-    <Container id='skills'>
+    <section id='skills'>
       <Title>Key Skills</Title>
       <BadgeCollection>
         <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
@@ -104,7 +104,7 @@ function Skills() {
         <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText="Autodesk Maya" />
         <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GNU Image Manipulation Program" />
       </BadgeCollection>
-    </Container>
+    </section>
   );
 }
 
