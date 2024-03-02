@@ -87,7 +87,7 @@ function SkillBadge({ src, alt, customText }) {
 
 function Skills() {
   return (
-    <Container>
+    <Container id='skills'>
       <Title>Key Skills</Title>
       <BadgeCollection>
         <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
