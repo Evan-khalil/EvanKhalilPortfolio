@@ -53,7 +53,7 @@ const CircularMenu = () => {
     if (dragging) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
-      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('touchend', handleTouchEnd);
     }
 
@@ -100,7 +100,7 @@ const CircularMenu = () => {
       {/* Added animation for drag message */}
       {showDragMessage && (
         <div className="drag-message">
-          <div className="arrow"></div>
+          <div className="arroww"></div>
           <div className="message">Drag me!</div>
         </div>
       )}

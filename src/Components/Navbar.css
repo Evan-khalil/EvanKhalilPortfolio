@@ -51,6 +51,7 @@
   background-color: rgb(229, 242, 149);
 }
 
+
 .fabItem {
   display: flex;
   align-items: center;
@@ -85,7 +86,6 @@
   opacity: 1;
   visibility: visible;
 }
-
 .drag-message {
   position: absolute;
   top: -30px;
@@ -99,7 +99,7 @@
   animation: moveUp 1s ease forwards, fadeIn 1s ease forwards;
 }
 
-.arrow {
+.arroww {
   position: absolute;
   top: 100%;
   left: 50%;
