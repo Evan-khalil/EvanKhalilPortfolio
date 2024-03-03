@@ -3,7 +3,8 @@
 body {
   background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
   background-size: cover;
-  background-repeat: no-repeat; /* Prevent background image from repeating */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensure the background remains fixed */
   -webkit-animation: slidein 100s;
   animation: slidein 100s;
   -webkit-animation-fill-mode: forwards;
@@ -58,9 +59,9 @@ code {
     monospace;
 }
 
-/* Adjust background attachment for smaller screens */
+/* Adjust background size for smaller screens */
 @media only screen and (max-width: 768px) {
   body {
-    background-attachment: fixed;
+    background-size: 100% 100%; /* Set background size to cover the entire body */
   }
 }
