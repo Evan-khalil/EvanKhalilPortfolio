@@ -60,9 +60,9 @@ code {
     monospace;
 }
 
-/* Adjust background size for smaller screens */
 @media only screen and (max-width: 768px) {
-  body {
-    background-attachment: scroll;
+    body {
+      background-attachment: scroll; /* Remove fixed attachment for smaller screens */
+      background-size: auto; /* Set background size to auto for smaller screens */
+    }
   }
-}
