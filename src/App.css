@@ -62,6 +62,6 @@ code {
 /* Adjust background size for smaller screens */
 @media only screen and (max-width: 768px) {
   body {
-    background-size: 100% 100%; /* Set background size to cover the entire body */
+    background-size: auto; /* Set background size to auto to prevent repeat and allow scrolling */
   }
 }
