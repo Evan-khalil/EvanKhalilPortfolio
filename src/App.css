@@ -64,6 +64,6 @@ code {
 @media only screen and (max-width: 768px) {
   body {
     background-attachment: scroll; /* Remove fixed attachment */
-    background-size: 150%; /* Set a fixed background size */
+    background-size: auto; 
   }
 }
