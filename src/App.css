@@ -15,7 +15,7 @@ body {
   background-attachment: fixed;
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 @-webkit-keyframes slidein {
@@ -54,9 +54,16 @@ body {
   border-radius: 3px;
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add media query to set background attachment to scroll on smaller screens */
+@media only screen and (max-width: 768px) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
 
