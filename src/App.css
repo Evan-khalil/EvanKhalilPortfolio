@@ -64,5 +64,7 @@ code {
 @media only screen and (max-width: 768px) {
   body {
     background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: scroll;
   }
 }
