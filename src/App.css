@@ -62,7 +62,10 @@ code {
 /* Add media query to set background attachment to scroll on smaller screens */
 @media only screen and (max-width: 768px) {
   body {
-    background-attachment: fixed;
+    -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
   }
 }
 
