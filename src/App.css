@@ -12,8 +12,6 @@ body {
   animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
-  background-size: 400% 400%;
-  background-attachment: fixed;
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
@@ -60,10 +58,9 @@ code {
     monospace;
 }
 
-/* Adjust background size and attachment for smaller screens */
+/* Adjust background attachment for smaller screens */
 @media only screen and (max-width: 768px) {
   body {
-    background-size: cover;
     background-attachment: fixed;
   }
 }
