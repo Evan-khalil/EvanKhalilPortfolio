@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
 
 body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -13,9 +24,7 @@ body {
   animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
-  margin: auto;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden;
+  z-index: -1; /* Ensure the background is behind other content */
 }
 
 @-webkit-keyframes slidein {
@@ -44,24 +53,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(75, 75, 250, 0);
-  border-radius: 3px;
+  height: 100vh; /* Adjust as needed */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* Adjust background size for smaller screens */
+/* Adjust animation for smaller screens */
 @media only screen and (max-width: 768px) {
-  body {
-    background-size: 100% 100%; /* Set background size to cover the entire body */
+  .bg-cover {
+    background-attachment: scroll; /* Change background attachment to scroll on smaller screens */
   }
 }
