@@ -87,9 +87,13 @@ const Item = styled.div`
   background-color: coral;
   transition: transform 0.4s ease;
   transform: ${props =>
-    `rotateY(calc(-9deg * ${props.currentPosition - props.position})) translateX(calc(310px * ${props.currentPosition - props.position})) ${props.currentPosition === props.position ? 'scale(1.3)' : 'scale(1)'}`}; /* Adjusted space between videos and added scale transform */
+    `rotateY(calc(-9deg * ${props.currentPosition - props.position})) translateX(calc(310px * ${props.currentPosition - props.position})) ${props.currentPosition === props.position ? 'scale(1.6)' : 'scale(1)'}`}; /* Adjusted space between videos and added scale transform */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: grabbing;
+  @media (min-width: 768px) {
+    width: ${props =>
+      props.currentPosition === props.position ? '320px' : '270px'}; /* Adjusted width for active item on larger screens */
+  }
 `;
 
 const VideoContainer = styled.video`

@@ -59,8 +59,8 @@ body {
   
   @media only screen and (max-width: 768px) {
     body {
-      background-attachment: scroll; /* Change background attachment for smaller screens */
-      background-size: cover; /* Adjust background size for smaller screens */
+      background-attachment: scroll;
+      background-size: auto; /* Set background size to auto for smaller screens */
     }
   }
   
