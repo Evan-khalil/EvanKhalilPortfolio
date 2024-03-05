@@ -14,7 +14,7 @@ const CircularMenu = () => {
       if (dragging) {
         const maxX = window.innerWidth - menuRef.current.offsetWidth;
         const maxY = window.innerHeight - menuRef.current.offsetHeight;
-        
+
         const x = Math.min(Math.max(0, event.clientX - offset.x), maxX);
         const y = Math.min(Math.max(0, event.clientY - offset.y), maxY);
 
@@ -34,7 +34,7 @@ const CircularMenu = () => {
       if (dragging) {
         const maxX = window.innerWidth - menuRef.current.offsetWidth;
         const maxY = window.innerHeight - menuRef.current.offsetHeight;
-        
+
         const touch = event.touches[0];
         const x = Math.min(Math.max(0, touch.clientX - offset.x), maxX);
         const y = Math.min(Math.max(0, touch.clientY - offset.y), maxY);
@@ -85,8 +85,18 @@ const CircularMenu = () => {
     setDragging(true);
   };
 
-  const handleMenuClick = () => {
+  const handleMenuHover = () => {
     setIsActive(!isActive);
+    setShowDragMessage(false);
+  };
+
+  const handleMenuLeave = () => {
+    setIsActive(false);
+  };
+
+  const handleMenuItemHover = (event) => {
+    event.preventDefault();
+    event.target.click();
   };
 
   return (
@@ -94,7 +104,9 @@ const CircularMenu = () => {
       className={`circular-menu ${isActive ? 'active' : ''}`}
       ref={menuRef}
       style={{ left: position.x, top: position.y }}
-      onMouseDown={handleMouseDown}
+      onMouseEnter={handleMenuHover} // Changed to onMouseEnter
+      onMouseLeave={handleMenuLeave} // Added onMouseLeave
+      onMouseDown={handleMouseDown} // Added for drag functionality
       onTouchStart={handleTouchStart}
     >
       {/* Added animation for drag message */}
@@ -104,36 +116,28 @@ const CircularMenu = () => {
           <div className="message">Drag me!</div>
         </div>
       )}
-      <div className="menu-icon" onClick={handleMenuClick}>
+      <div className="menu-icon">
         <div className="line"></div>
         <div className="line"></div>
         <div className="line"></div>
       </div>
       {isActive && (
         <div className="menu-items">
-          <a href="#about" className="fabItem ic-about menu-item" style={{ marginBottom: '25PX' }}>
+          <a href="#about" className="fabItem ic-about menu-item" onMouseEnter={handleMenuItemHover}>
             <span className="fabTooltip">About Me</span>
             <i className="fas fa-user"></i>
           </a>
-          <a href="#education" className="fabItem ic-education menu-item" style={{ marginBottom: '25PX' }}>
+          <a href="#education" className="fabItem ic-education menu-item" onMouseEnter={handleMenuItemHover}>
             <span className="fabTooltip">Education</span>
             <i className="fas fa-graduation-cap"></i>
           </a>
-          <a href="#skills" className="fabItem ic-skills menu-item" style={{ marginBottom: '25PX' }}>
+          <a href="#skills" className="fabItem ic-skills menu-item" onMouseEnter={handleMenuItemHover}>
             <span className="fabTooltip">Skills</span>
             <i className="fas fa-tools"></i>
           </a>
-          <a href="#Projects" className="fabItem ic-projects menu-item" style={{ marginBottom: '25PX' }}>
+          <a href="#Projects" className="fabItem ic-projects menu-item" onMouseEnter={handleMenuItemHover}>
             <span className="fabTooltip">Projects</span>
             <i className="fas fa-project-diagram"></i>
-          </a>
-          <a href="https://github.com/Evan-khalil" className="fabItem ic-github menu-item" style={{ marginBottom: '25PX' }}>
-            <span className="fabTooltip">Github</span>
-            <i className="fas fa-code"></i>
-          </a>
-          <a href="https://se.linkedin.com/in/evan-khalil-0a6013164" className="fabItem ic-linkedin menu-item" style={{ marginBottom: '25PX' }}>
-            <span className="fabTooltip" >LinkedIn</span>
-            <i className="fab fa-linkedin"></i>
           </a>
         </div>
       )}
