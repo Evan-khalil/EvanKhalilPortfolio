@@ -4,17 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-const ArrowAnimation = keyframes`
-  0%, 100% {
-    opacity: 0.5;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-10px);
-  }
-`;
-
 const Container = styled.div`
   height: 600px;
   margin: 0;
@@ -53,9 +42,19 @@ const CarouselContainer = styled.main`
   &:active {
     cursor: grabbing; /* Change cursor to grabbing when clicked */
   }
-  .arrow {
+  &:hover .arrow {
+    opacity: 1; /* Show arrows on hover */
+  }
+`;
+
+const ArrowAnimation = keyframes`
+  0%, 100% {
     opacity: 0.5;
-    animation: ${ArrowAnimation} 1s infinite;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px);
   }
 `;
 
@@ -65,16 +64,20 @@ const Arrow = styled(FontAwesomeIcon)`
   transform: translateY(-50%);
   font-size: 34px;
   color: white;
+  opacity: 0.5;
   cursor: pointer;
+  animation: ${ArrowAnimation} 1s infinite;
   z-index: 10; /* Adjusted z-index to be higher than videos */
 `;
 
 const LeftArrow = styled(Arrow)`
   left: 22px;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; 
 `;
 
 const RightArrow = styled(Arrow)`
   right: 22px;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; 
 `;
 
 const Item = styled.div`
@@ -184,6 +187,27 @@ const Carousel = () => {
 
   useEffect(() => {
     initializeVideos();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setShowArrows(true);
+        }
+      });
+    }, {
+      threshold: 0.5 // Trigger when 50% of the section is visible
+    });
+
+    const section = document.getElementById('Projects');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
   }, []);
 
   const initializeVideos = () => {
@@ -301,11 +325,13 @@ const Carousel = () => {
           icon={faArrowLeft}
           className="arrow"
           onClick={handleLeftArrowClick}
+          visible={currentPosition < videos.length - 1 && showArrows} 
         />
         <RightArrow
           icon={faArrowRight}
           className="arrow"
           onClick={handleRightArrowClick}
+          visible={currentPosition > 0 && showArrows} 
         />
         {videos.map((video, index) => (
           <Item
