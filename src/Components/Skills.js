@@ -7,7 +7,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   text-align: center;
-  color: #333;
+  color: white;
 `;
 
 const BadgeCollection = styled.div`

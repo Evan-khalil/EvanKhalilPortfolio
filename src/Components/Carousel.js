@@ -4,6 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
+const ArrowAnimation = keyframes`
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+`;
+
 const Container = styled.div`
   height: 600px;
   margin: 0;
@@ -42,19 +53,9 @@ const CarouselContainer = styled.main`
   &:active {
     cursor: grabbing; /* Change cursor to grabbing when clicked */
   }
-  &:hover .arrow {
-    opacity: 1; /* Show arrows on hover */
-  }
-`;
-
-const ArrowAnimation = keyframes`
-  0%, 100% {
+  .arrow {
     opacity: 0.5;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-10px);
+    animation: ${ArrowAnimation} 1s infinite;
   }
 `;
 
@@ -64,20 +65,16 @@ const Arrow = styled(FontAwesomeIcon)`
   transform: translateY(-50%);
   font-size: 34px;
   color: white;
-  opacity: 0.5;
   cursor: pointer;
-  animation: ${ArrowAnimation} 1s infinite;
   z-index: 10; /* Adjusted z-index to be higher than videos */
 `;
 
 const LeftArrow = styled(Arrow)`
   left: 22px;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; /* Show/hide left arrow based on visibility */
 `;
 
 const RightArrow = styled(Arrow)`
   right: 22px;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; /* Show/hide right arrow based on visibility */
 `;
 
 const Item = styled.div`
@@ -90,9 +87,14 @@ const Item = styled.div`
     `rotateY(calc(-9deg * ${props.currentPosition - props.position})) translateX(calc(310px * ${props.currentPosition - props.position})) ${props.currentPosition === props.position ? 'scale(1.6)' : 'scale(1)'}`}; /* Adjusted space between videos and added scale transform */
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: grabbing;
-  @media (min-width: 768px) {
-    width: ${props =>
-      props.currentPosition === props.position ? '320px' : '270px'}; /* Adjusted width for active item on larger screens */
+
+  @media (max-width: 1024px) {
+    width: 230px; /* Adjusted width for iPads */
+    height: 300px; /* Adjusted height for iPads */
+  }
+  @media (max-width: 768px) {
+    width: 180px; /* Adjusted width for phones */
+    height: 225px; /* Adjusted height for phones */
   }
 `;
 
@@ -182,30 +184,6 @@ const Carousel = () => {
 
   useEffect(() => {
     initializeVideos();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setShowArrows(true);
-          setTimeout(() => {
-            setShowArrows(false);
-          }, 3000); // Hide arrows after 3 seconds
-        }
-      });
-    }, {
-      threshold: 0.5 // Trigger when 50% of the section is visible
-    });
-
-    const section = document.getElementById('Projects');
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
   }, []);
 
   const initializeVideos = () => {
@@ -323,13 +301,11 @@ const Carousel = () => {
           icon={faArrowLeft}
           className="arrow"
           onClick={handleLeftArrowClick}
-          visible={currentPosition < videos.length - 1 && showArrows} // Show/hide left arrow based on visibility and showArrows state
         />
         <RightArrow
           icon={faArrowRight}
           className="arrow"
           onClick={handleRightArrowClick}
-          visible={currentPosition > 0 && showArrows} // Show/hide right arrow based on visibility and showArrows state
         />
         {videos.map((video, index) => (
           <Item

@@ -96,8 +96,22 @@ const CircularMenu = () => {
 
   const handleMenuItemHover = (event) => {
     event.preventDefault();
-    event.target.click();
-  };
+    const targetId = event.target.getAttribute('href').slice(1); // Get the target section id
+    const targetSection = document.getElementById(targetId); // Get the target section element
+    if (targetSection) {
+        let scrollOptions = {
+            behavior: 'smooth',
+            block: 'center', // Scroll to the center of the target section by default
+        };
+
+        if (targetId === 'Projects') {
+            scrollOptions.block = 'end'; // For the Projects section, scroll to the end
+        }
+
+        targetSection.scrollIntoView(scrollOptions); // Scroll to the target section
+    }
+};
+
 
   return (
     <div
@@ -139,6 +153,14 @@ const CircularMenu = () => {
             <span className="fabTooltip">Projects</span>
             <i className="fas fa-project-diagram"></i>
           </a>
+          <a href="https://github.com/Evan-khalil" className="fabItem ic-github menu-item">
+          <span className="fabTooltip">Github</span>
+          <i className="fas fa-code"></i>
+        </a>
+        <a href="https://se.linkedin.com/in/evan-khalil-0a6013164" className="fabItem ic-linkedin menu-item">
+          <span className="fabTooltip" >LinkedIn</span>
+          <i className="fab fa-linkedin"></i>
+        </a>
         </div>
       )}
     </div>

@@ -11,10 +11,10 @@ const About = () => {
     "As you explore my website, you will find examples of my past work and accomplishments. I am proud of what I have learned so far and am excited for the future",
     "If you have any questions or would like to discuss any potential opportunities, please don't hesitate to reach out to me. Thank you for visiting my website."
   ];
-  const typingSpeed = 10; // Adjust the typing speed as needed
-  const eraseDelay = 3000;
+  const typingSpeed = 5; // Adjust the typing speed as needed
+  const eraseDelay = 7000;
   const paragraphHeight = 70; // Adjust the height as needed
-  const initialDelay = 1000; // Adjust the initial delay time in milliseconds
+  const initialDelay = 500; // Adjust the initial delay time in milliseconds
 
   useEffect(() => {
     let lineIndex = 0;
