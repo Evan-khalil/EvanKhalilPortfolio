@@ -17,7 +17,7 @@ const Title = styled.h1`
   font-size: 100px; /* Adjust font size as needed */
   margin: 0;
   padding: 20px 10px; /* Adjust padding as needed */
-  opacity: ${(props) => (props.isVisible ? '0.40' : '0')};
+  opacity: ${(props) => (props.isVisible ? '0.70' : '0')};
   transition: opacity 0.5s ease; /* Add transition for opacity */
   width: 120px;
   z-index: 1; /* Ensure the title is in front */

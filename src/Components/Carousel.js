@@ -30,7 +30,7 @@ const Title = styled.h1`
   justify-self: center; /* Center text horizontally */
   align-self: center; /* Center text vertically */
   z-index: 10; /* Ensure the title is above videos */
-  opacity: ${props => (props.visible ? '0.40' : '0')}; /* Initially hidden */
+  opacity: ${props => (props.visible ? '0.70' : '0')}; /* Initially hidden */
   transition: opacity 0.5s ease; /* Smooth transition for visibility */
   font-size:100px;
 `;
