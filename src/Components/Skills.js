@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
   padding: 20px;
+  position: relative; /* Ensure relative positioning for the title */
 `;
 
 const Title = styled.h1`
-  text-align: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: white;
+  font-size: 100px; /* Adjust font size as needed */
+  margin: 0;
+  padding: 20px 10px; /* Adjust padding as needed */
+  opacity: ${(props) => (props.isVisible ? '0.40' : '0')};
+  transition: opacity 0.5s ease; /* Add transition for opacity */
+  width: 120px;
 `;
+
 
 const BadgeCollection = styled.div`
   display: flex;
@@ -35,9 +48,6 @@ const Badge = styled.div`
   position: relative;
   border-radius: 8px;
   transition: box-shadow 0.3s ease;
-
-  &:hover {
-  }
 
   &:hover img {
     animation: ${pulsate} 1s infinite;
@@ -86,24 +96,49 @@ function SkillBadge({ src, alt, customText }) {
 }
 
 function Skills() {
+  const [isVisible, setIsVisible] = useState(false); // State variable to control visibility
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            const timeout = setTimeout(() => {
+              setIsVisible(false);
+            }, 500);
+            return () => clearTimeout(timeout);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(document.getElementById('skills'));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id='skills'>
-      <Title>Key Skills</Title>
-      <BadgeCollection>
-        <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
-        <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" customText="Cascading Style Sheets" />
-        <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" customText="Hypertext Preprocessor" />
-        <SkillBadge src="./badges/csharp-svgrepo-com.svg" alt="C#" customText="C Sharp" />
-        <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" customText="JavaScript" />
-      </BadgeCollection>
-      <BadgeCollection>
-        <SkillBadge src="./badges/icons8-visual-studio.svg" alt="Visual Studio" customText="Microsoft Visual Studio" />
-        <SkillBadge src="./badges/icons8-visual-studio-code.svg" alt="Visual Studio Code" customText="Visual Studio Code" />
-        <SkillBadge src="./badges/icons8-microsoft-sql-server.svg" alt="SQL Server Management Studio" customText="SQL Server Management Studio" />
-        <SkillBadge src="./badges/icons8-unreal-engine.svg" alt="Unreal Engine" customText="Unreal Engine" />
-        <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText="Autodesk Maya" />
-        <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GNU Image Manipulation Program" />
-      </BadgeCollection>
+      <Container>
+        <Title isVisible={isVisible}>Skills</Title>
+        <BadgeCollection>
+          <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
+          <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" customText="Cascading Style Sheets" />
+          <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" customText="Hypertext Preprocessor" />
+          <SkillBadge src="./badges/csharp-svgrepo-com.svg" alt="C#" customText="C Sharp" />
+          <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" customText="JavaScript" />
+        </BadgeCollection>
+        <BadgeCollection>
+          <SkillBadge src="./badges/icons8-visual-studio.svg" alt="Visual Studio" customText="Microsoft Visual Studio" />
+          <SkillBadge src="./badges/icons8-visual-studio-code.svg" alt="Visual Studio Code" customText="Visual Studio Code" />
+          <SkillBadge src="./badges/icons8-microsoft-sql-server.svg" alt="SQL Server Management Studio" customText="SQL Server Management Studio" />
+          <SkillBadge src="./badges/icons8-unreal-engine.svg" alt="Unreal Engine" customText="Unreal Engine" />
+          <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText="Autodesk Maya" />
+          <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GNU Image Manipulation Program" />
+        </BadgeCollection>
+      </Container>
     </section>
   );
 }

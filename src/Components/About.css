@@ -8,21 +8,42 @@
 }
 
 .container {
+  display: flex;
+  justify-content: space-between;
   max-width: 1300px; /* Updated max-width */
   margin: 0 auto;
+}
+
+.vertical-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding-top: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+}
+
+#title {
+  font-size: 100px !important;
+  width: 110px;
+  opacity: 0;
+  transition: opacity 0.5s ease; /* Add transition for opacity */
+}
+
+.about-section .show-title #title {
+  opacity: 0.40;
 }
 
 #about {
   color: white;
 }
 
-#about-text {
-  font-size: large;
-}
 
 .typewriter {
-  padding-top: 2%;
-  padding-bottom: 30%; /* Default padding for laptops and PCs */
+  padding-top: 20%;
+  padding-bottom: 20%; /* Default padding for laptops and PCs */
   color: white;
   font-family: monospace;
   overflow: hidden;
@@ -58,4 +79,3 @@
     padding-bottom: 160% !important; /* Added !important */
   }
 }
-

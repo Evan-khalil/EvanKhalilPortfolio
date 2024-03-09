@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 0;
   display: grid;
   grid-template-rows: 50px 500px 100px;
-  grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
+  grid-template-columns: auto 1fr 30px 30px 30px 30px 30px;
   align-items: center;
   justify-items: center;
   padding-top: 30%;
@@ -19,10 +19,20 @@ const Container = styled.div`
 
 const Title = styled.h1`
   grid-row: 1 / 2;
-  grid-column: 1 / 8;
-  text-align: center;
+  grid-column: 1 / 2;
+  text-align: left;
   color: white;
-  padding-bottom: 15%;
+  writing-mode: vertical-rl; /* Set text to vertical orientation */
+  transform: rotate(0deg); /* Rotate text for correct orientation */
+  margin: 0; /* Reset margin */
+  padding-top: 600px; /* Reset padding */
+  white-space: nowrap; /* Prevent text from wrapping */
+  justify-self: center; /* Center text horizontally */
+  align-self: center; /* Center text vertically */
+  z-index: 10; /* Ensure the title is above videos */
+  opacity: ${props => (props.visible ? '0.40' : '0')}; /* Initially hidden */
+  transition: opacity 0.5s ease; /* Smooth transition for visibility */
+  font-size:100px;
 `;
 
 const CarouselContainer = styled.main`
@@ -39,12 +49,6 @@ const CarouselContainer = styled.main`
   position: relative;
   user-select: none; /* Disable text selection */
   cursor: grab; /* Change cursor to grab */
-  &:active {
-    cursor: grabbing; /* Change cursor to grabbing when clicked */
-  }
-  &:hover .arrow {
-    opacity: 1; /* Show arrows on hover */
-  }
 `;
 
 const ArrowAnimation = keyframes`
@@ -71,13 +75,11 @@ const Arrow = styled(FontAwesomeIcon)`
 `;
 
 const LeftArrow = styled(Arrow)`
-  left: 22px;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; 
+  left: 120px;
 `;
 
 const RightArrow = styled(Arrow)`
-  right: 22px;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')}; 
+  right: 120px;
 `;
 
 const Item = styled.div`
@@ -176,7 +178,6 @@ const videos = [
     youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
   }
 ];
-
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [showArrows, setShowArrows] = useState(true);
@@ -192,6 +193,9 @@ const Carousel = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setShowArrows(true);
+          setTimeout(() => {
+            setShowArrows(false);
+          }, 500);
         }
       });
     }, {
@@ -312,7 +316,7 @@ const Carousel = () => {
 
   return (
     <Container id="Projects">
-      <Title>Project highlights</Title>
+      <Title visible={showArrows}>Projects</Title>
       <CarouselContainer
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
