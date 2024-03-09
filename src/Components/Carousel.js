@@ -76,10 +76,12 @@ const Arrow = styled(FontAwesomeIcon)`
 
 const LeftArrow = styled(Arrow)`
   left: 120px;
+  display: ${props => (props.visible ? 'block' : 'none')};
 `;
 
 const RightArrow = styled(Arrow)`
   right: 120px;
+  display: ${props => (props.visible ? 'block' : 'none')};
 `;
 
 const Item = styled.div`
@@ -181,6 +183,7 @@ const videos = [
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [showArrows, setShowArrows] = useState(true);
+  const [showTitle, setShowTitle] = useState(false); // Added state for controlling title visibility
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(-1);
@@ -192,9 +195,9 @@ const Carousel = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setShowArrows(true);
+          setShowTitle(true); // Show title when section comes into view
           setTimeout(() => {
-            setShowArrows(false);
+            setShowTitle(false); // Hide title after 500ms
           }, 500);
         }
       });
@@ -316,7 +319,7 @@ const Carousel = () => {
 
   return (
     <Container id="Projects">
-      <Title visible={showArrows}>Projects</Title>
+      <Title visible={showTitle}>Projects</Title> {/* Set title visibility */}
       <CarouselContainer
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
