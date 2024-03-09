@@ -71,7 +71,7 @@ const Arrow = styled(FontAwesomeIcon)`
   opacity: 0.5;
   cursor: pointer;
   animation: ${ArrowAnimation} 1s infinite;
-  z-index: 10; /* Adjusted z-index to be higher than videos */
+  z-index: 11; /* Adjusted z-index to be higher than videos */
 `;
 
 const LeftArrow = styled(Arrow)`
