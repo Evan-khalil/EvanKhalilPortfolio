@@ -42,7 +42,7 @@
 
 
 .typewriter {
-  padding-top: 20%;
+  padding-top: 15%;
   padding-bottom: 20%; /* Default padding for laptops and PCs */
   color: white;
   font-family: monospace;
@@ -51,7 +51,7 @@
   margin: 0 auto;
   letter-spacing: .15em;
   word-wrap: break-word;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .typewriter:after {

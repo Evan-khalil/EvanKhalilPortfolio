@@ -20,6 +20,7 @@ const Title = styled.h1`
   opacity: ${(props) => (props.isVisible ? '0.40' : '0')};
   transition: opacity 0.5s ease; /* Add transition for opacity */
   width: 120px;
+  z-index: 1; /* Ensure the title is in front */
 `;
 
 

@@ -18,7 +18,7 @@
   padding-top: 350px;
 }
 
-#title {
+#eduTitle {
   color: white;
   font-size: 100px;
   width: 110px;
@@ -26,7 +26,7 @@
   transition: opacity 0.5s ease; /* Add transition for opacity */
 }
 
-.show-title #title {
+.show-title #eduTitle {
   opacity: 0.40;
 }
 
@@ -108,7 +108,6 @@
   background-position: center !important;
   height: 220px;
   padding: 1em 2em;
-  background: #313131;
   border-radius: 10px;
 }
 
@@ -116,7 +115,7 @@
 .flip > .back p {
   font-size: 1.3rem;
   line-height: 160%;
-  color: #999;
+  color: #ffffff;
 }
 
 .text-shadow {

@@ -50,6 +50,19 @@ const CircularMenu = () => {
       }
     };
 
+    const handleResize = () => {
+      setPosition((prevPosition) => {
+        const maxX = window.innerWidth - menuRef.current.offsetWidth;
+        const maxY = window.innerHeight - menuRef.current.offsetHeight;
+
+        // Ensure position stays within window bounds after resize
+        const x = Math.min(prevPosition.x, maxX);
+        const y = Math.min(prevPosition.y, maxY);
+
+        return { x, y };
+      });
+    };
+
     if (dragging) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
@@ -57,11 +70,14 @@ const CircularMenu = () => {
       window.addEventListener('touchend', handleTouchEnd);
     }
 
+    window.addEventListener('resize', handleResize); // Add event listener for window resize
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('resize', handleResize); // Remove event listener for window resize
     };
   }, [dragging, offset]);
 
