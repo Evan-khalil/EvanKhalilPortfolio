@@ -54,6 +54,7 @@
 }
 
 .typewriter:after {
+  font-size: 29px;
   color: orange;
   content: "|";
   animation: blink-caret .75s step-end infinite;
