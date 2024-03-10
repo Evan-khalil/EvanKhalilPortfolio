@@ -1,9 +1,11 @@
 body {
     margin: auto;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto Slab', sans-serif !important;
     overflow-x: hidden;
+    -webkit-user-select: none;
     user-select: none;
-  }
+}
+
   
   body::-webkit-scrollbar {
     display: none;

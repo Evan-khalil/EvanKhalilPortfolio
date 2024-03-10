@@ -182,7 +182,7 @@ const videos = [
 ];
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
-  const [showArrows, setShowArrows] = useState(true);
+  const [showArrows] = useState(true);
   const [showTitle, setShowTitle] = useState(false); // Added state for controlling title visibility
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
