@@ -44,7 +44,7 @@
 .typewriter {
   padding-top: 15%;
   padding-bottom: 20%; /* Default padding for laptops and PCs */
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   overflow: hidden;
   white-space: pre-line;
   margin: 0 auto;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+// Styled components for the container, title, and badge collection
 const Container = styled.div`
   padding: 20px;
   position: relative; /* Ensure relative positioning for the title */
@@ -23,13 +24,13 @@ const Title = styled.h1`
   z-index: 1; /* Ensure the title is in front */
 `;
 
-
 const BadgeCollection = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
+// Keyframe animation for pulsating effect
 const pulsate = keyframes`
   0% {
     transform: scale(1);
@@ -42,6 +43,7 @@ const pulsate = keyframes`
   }
 `;
 
+// Styled components for badge, image, and custom text
 const Badge = styled.div`
   margin: 10px;
   padding: 20px;
@@ -76,6 +78,7 @@ const CustomText = styled.span`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
+// Wrapper for badge and custom text to control hover effect
 const BadgeWrapper = styled.div`
   position: relative;
 
@@ -85,6 +88,7 @@ const BadgeWrapper = styled.div`
   }
 `;
 
+// SkillBadge component to render each individual skill badge
 function SkillBadge({ src, alt, customText }) {
   return (
     <BadgeWrapper>
@@ -96,9 +100,11 @@ function SkillBadge({ src, alt, customText }) {
   );
 }
 
+// Skills component to render the entire skills section
 function Skills() {
   const [isVisible, setIsVisible] = useState(false); // State variable to control visibility
 
+  // useEffect hook to observe when the skills section comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -107,7 +113,7 @@ function Skills() {
             setIsVisible(true);
             const timeout = setTimeout(() => {
               setIsVisible(false);
-            }, 500);
+            }, 1000);
             return () => clearTimeout(timeout);
           }
         });
@@ -115,16 +121,18 @@ function Skills() {
       { threshold: 0.5 }
     );
 
-    observer.observe(document.getElementById('skills'));
+    observer.observe(document.getElementById('skills')); // Observe the skills section
 
-    return () => observer.disconnect();
+    return () => observer.disconnect(); // Clean up the observer
   }, []);
 
+  // Render the skills section
   return (
     <section id='skills'>
       <Container>
-        <Title isVisible={isVisible}>Skills</Title>
+        <Title isVisible={isVisible}>Skills</Title> {/* Render the title with conditional opacity */}
         <BadgeCollection>
+          {/* Render each skill badge */}
           <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
           <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" customText="Cascading Style Sheets" />
           <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" customText="Hypertext Preprocessor" />
@@ -132,16 +140,17 @@ function Skills() {
           <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" customText="JavaScript" />
         </BadgeCollection>
         <BadgeCollection>
+          {/* Render additional skill badges */}
           <SkillBadge src="./badges/icons8-visual-studio.svg" alt="Visual Studio" customText="Microsoft Visual Studio" />
           <SkillBadge src="./badges/icons8-visual-studio-code.svg" alt="Visual Studio Code" customText="Visual Studio Code" />
           <SkillBadge src="./badges/icons8-microsoft-sql-server.svg" alt="SQL Server Management Studio" customText="SQL Server Management Studio" />
           <SkillBadge src="./badges/icons8-unreal-engine.svg" alt="Unreal Engine" customText="Unreal Engine" />
           <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText="Autodesk Maya" />
-          <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GNU Image Manipulation Program" />
+          <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GIMP, Image Manipulation Program" />
         </BadgeCollection>
       </Container>
     </section>
   );
 }
 
-export default Skills;
+export default Skills; // Export the Skills component

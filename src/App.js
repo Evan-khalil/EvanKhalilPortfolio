@@ -1,10 +1,11 @@
 import React from 'react';
-import Navbar from './Components/Navbar';
-import About from './Components/About';
-import Carousel from './Components/Carousel';
-import Skills from './Components/Skills';
-import Edu from './Components/edu';
 import './App.css';
+import MenySection from './Components/MenySection';
+import AboutSection from './Components/AboutSection';
+import EducationSection from './Components/EducationSection';
+import SkillSection from './Components/SkillSection';
+import ProjectSection from './Components/ProjectSection';
+
 
 function App() {
   return (
@@ -12,12 +13,12 @@ function App() {
     <div class="center">
 
     </div>
-        <Navbar />
+        <MenySection />
       <main>
-        <About />
-        <Edu />
-        <Skills />
-        <Carousel />
+        <AboutSection />
+        <EducationSection />
+        <SkillSection />
+        <ProjectSection />
       </main>
     </div>
   );

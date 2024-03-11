@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-items: center;
   padding-top: 30%;
   padding-bottom: 50%;
-  position: relative; /* Added position relative for arrow positioning */
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -22,16 +22,16 @@ const Title = styled.h1`
   grid-column: 1 / 2;
   text-align: left;
   color: white;
-  writing-mode: vertical-rl; /* Set text to vertical orientation */
-  transform: rotate(0deg); /* Rotate text for correct orientation */
-  margin: 0; /* Reset margin */
-  padding-top: 600px; /* Reset padding */
-  white-space: nowrap; /* Prevent text from wrapping */
-  justify-self: center; /* Center text horizontally */
-  align-self: center; /* Center text vertically */
-  z-index: 10; /* Ensure the title is above videos */
-  opacity: ${props => (props.visible ? '0.70' : '0')}; /* Initially hidden */
-  transition: opacity 0.5s ease; /* Smooth transition for visibility */
+  writing-mode: vertical-rl;
+  transform: rotate(0deg);
+  margin: 0;
+  padding-top: 600px;
+  white-space: nowrap;
+  justify-self: center;
+  align-self: center;
+  z-index: 10;
+  opacity: ${props => (props.visible ? '0.70' : '0')};
+  transition: opacity 0.5s ease;
   font-size:100px;
 `;
 
@@ -47,8 +47,8 @@ const CarouselContainer = styled.main`
   transform-style: preserve-3d;
   perspective: 600px;
   position: relative;
-  user-select: none; /* Disable text selection */
-  cursor: grab; /* Change cursor to grab */
+  user-select: none;
+  cursor: grab;
 `;
 
 const ArrowAnimation = keyframes`
@@ -71,7 +71,7 @@ const Arrow = styled(FontAwesomeIcon)`
   opacity: 0.5;
   cursor: pointer;
   animation: ${ArrowAnimation} 1s infinite;
-  z-index: 11; /* Adjusted z-index to be higher than videos */
+  z-index: 11;
 `;
 
 const LeftArrow = styled(Arrow)`
@@ -91,17 +91,17 @@ const Item = styled.div`
   background-color: coral;
   transition: transform 0.4s ease;
   transform: ${props =>
-    `rotateY(calc(-9deg * ${props.currentPosition - props.position})) translateX(calc(310px * ${props.currentPosition - props.position})) ${props.currentPosition === props.position ? 'scale(1.6)' : 'scale(1)'}`}; /* Adjusted space between videos and added scale transform */
+    `rotateY(calc(-9deg * ${props.currentPosition - props.position})) translateX(calc(310px * ${props.currentPosition - props.position})) ${props.currentPosition === props.position ? 'scale(1.6)' : 'scale(1)'}`};
   z-index: ${props => 5 - Math.abs(props.position - props.currentPosition)};
   cursor: grabbing;
 
   @media (max-width: 1024px) {
-    width: 230px; /* Adjusted width for iPads */
-    height: 300px; /* Adjusted height for iPads */
+    width: 230px;
+    height: 300px;
   }
   @media (max-width: 768px) {
-    width: 180px; /* Adjusted width for phones */
-    height: 225px; /* Adjusted height for phones */
+    width: 180px;
+    height: 225px;
   }
 `;
 
@@ -145,45 +145,45 @@ const YoutubeIcon = styled(FontAwesomeIcon)`
 const videos = [
   {
     src: "./videos/3D character model and animation.mp4",
-    youtubeLink: "https://youtu.be/5j5ynQMiqec" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/5j5ynQMiqec"
   },
   {
     src: "./videos/Asp.Net Core.mp4",
-    youtubeLink: "https://youtu.be/0Kd2BzR85vs" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/0Kd2BzR85vs"
   },
   {
     src: "./videos/Diagram Generator.mp4",
-    youtubeLink: "https://youtu.be/M7zoKUPLPbc" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/M7zoKUPLPbc"
   },
   {
     src: "./videos/Media player.mp4",
-    youtubeLink: "https://youtu.be/s_iTbsBj3dc" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/s_iTbsBj3dc"
   },
   {
     src: "./videos/Quiz Manager.mp4",
-    youtubeLink: "https://youtu.be/YJTSEMQSWj4" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/YJTSEMQSWj4"
   },
   {
     src: "./videos/TcpListener and TcpClient.mp4",
-    youtubeLink: "https://youtu.be/bBdxQVK13Os" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/bBdxQVK13Os"
   },
   {
     src: "./videos/TicTacToe TcpListener & TcpClient.mp4",
-    youtubeLink: "https://youtu.be/1m4SZ1GNv8k" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/1m4SZ1GNv8k"
   },
   {
     src: "./videos/Unreal engine Gameplay.mp4",
-    youtubeLink: "https://youtu.be/gSwQwyqYXuU" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/gSwQwyqYXuU"
   },
   {
     src: "./videos/UDP Sockets.mp4",
-    youtubeLink: "https://youtu.be/D_mgwp8YlwU" // Add YouTube link for this video
+    youtubeLink: "https://youtu.be/D_mgwp8YlwU"
   }
 ];
+
 const Carousel = () => {
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
-  const [showArrows] = useState(true);
-  const [showTitle, setShowTitle] = useState(false); // Added state for controlling title visibility
+  const [showTitle, setShowTitle] = useState(false);
   const [startX, setStartX] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(-1);
@@ -195,14 +195,14 @@ const Carousel = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setShowTitle(true); // Show title when section comes into view
+          setShowTitle(true);
           setTimeout(() => {
-            setShowTitle(false); // Hide title after 500ms
-          }, 500);
+            setShowTitle(false);
+          }, 1000);
         }
       });
     }, {
-      threshold: 0.5 // Trigger when 50% of the section is visible
+      threshold: 0.5
     });
 
     const section = document.getElementById('Projects');
@@ -249,7 +249,7 @@ const Carousel = () => {
 
     const x = e.touches[0].clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 500; // Adjusted divisor for slower swiping
+    let newPosition = currentPosition + difference / 500;
 
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
     setCurrentPosition(newPosition);
@@ -274,7 +274,7 @@ const Carousel = () => {
 
     const x = e.clientX;
     const difference = x - startX;
-    let newPosition = currentPosition + difference / 500; // Adjusted divisor for slower swiping
+    let newPosition = currentPosition + difference / 500;
 
     newPosition = Math.max(0, Math.min(newPosition, videos.length - 1));
     setCurrentPosition(newPosition);
@@ -289,7 +289,7 @@ const Carousel = () => {
   };
 
   const handleItemClick = index => {
-    setCurrentPosition(index); // Set currentPosition to the index of the clicked video
+    setCurrentPosition(index);
     const player = playerRefs.current[index];
     if (activeVideoIndex === index) {
       if (player.paused) {
@@ -319,7 +319,7 @@ const Carousel = () => {
 
   return (
     <Container id="Projects">
-      <Title visible={showTitle}>Projects</Title> {/* Set title visibility */}
+      <Title visible={showTitle}>Projects</Title>
       <CarouselContainer
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -332,13 +332,13 @@ const Carousel = () => {
           icon={faArrowLeft}
           className="arrow"
           onClick={handleLeftArrowClick}
-          visible={currentPosition < videos.length - 1 && showArrows} 
+          visible={currentPosition < videos.length - 1} 
         />
         <RightArrow
           icon={faArrowRight}
           className="arrow"
           onClick={handleRightArrowClick}
-          visible={currentPosition > 0 && showArrows} 
+          visible={currentPosition > 0} 
         />
         {videos.map((video, index) => (
           <Item

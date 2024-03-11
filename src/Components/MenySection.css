@@ -94,9 +94,9 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
-  color: #fff;
+  color: #000000;
   padding: 8px 12px;
-  background-color: #333;
+  background-color: #ffffff;
   border-radius: 20px;
   animation: moveUp 1s ease forwards, fadeIn 1s ease forwards;
 }
