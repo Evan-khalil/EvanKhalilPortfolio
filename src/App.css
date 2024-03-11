@@ -20,7 +20,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -10;
-    background: url('C:\Users\Evank\Desktop\Files\myportfolio\public\images\Background.jpg') no-repeat center center;
+    background: url('../public/images/Background.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
