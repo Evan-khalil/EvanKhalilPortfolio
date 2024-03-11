@@ -27,7 +27,32 @@ body {
     background-size: cover;
     animation: slidein 700s infinite alternate;
   }
-  
+  @-webkit-keyframes slidein {
+    0% {
+      background-position: top left;
+      background-size: 3000px;
+    }
+    25% {
+      background-position: center center;
+      background-size: 3000px;
+    }
+    45%{
+      background-position: bottom center;
+      background-size: 3000px;
+    }
+    65%{
+      background-position: top right;
+      background-size: 3000px;
+    }
+    85%{
+      background-position: bottom right;
+      background-size: 3000px;
+    }
+    100%{
+      background-position: top center;
+      background-size: 3000px;
+    }
+  }
   @keyframes slidein {
     0% {
       background-position: top left;
