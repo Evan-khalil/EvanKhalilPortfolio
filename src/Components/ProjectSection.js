@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
   height: 600px;
@@ -182,6 +183,8 @@ const videos = [
 ];
 
 const Carousel = () => {
+  const { t } = useTranslation(); // Access translations
+
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [showTitle, setShowTitle] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -319,7 +322,7 @@ const Carousel = () => {
 
   return (
     <Container id="Projects">
-      <Title visible={showTitle}>Projects</Title>
+      <Title visible={showTitle}>{t('projects')}</Title>
       <CarouselContainer
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

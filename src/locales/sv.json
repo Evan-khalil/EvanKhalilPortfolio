@@ -1,0 +1,48 @@
+{
+    "about": "Om",
+    "aboutLine1": "Välkommen till min portfölj! Jag är mycket glad att presentera mig själv som Evan Khalil, nyligen utexaminerad från Örebro universitets program för informationssystem. När jag ger mig in i världen av systemutveckling, är jag fylld av entusiasm för att göra min mark i branschen.",
+    "aboutLine2": "Driven av en outsläcklig törst efter kompetensförbättring, ser jag mig själv som en högst motiverad individ. Min filosofi kretsar kring att optimera arbetsprocesser för att förbättra vår livskvalitet."
+    ,"aboutLine3": "Genom min akademiska resa och praktiska erfarenheter har jag slipat avgörande egenskaper som uppmärksamhet på detaljer, kritiskt tänkande och problemlösning - egenskaper jag ivrigt vill tillämpa på varje projekt jag tar mig an."
+    ,
+    "aboutLine4": "Inom denna portfölj kommer du att upptäcka en samling av mina tidigare insatser och prestationer. Var och en utgör en milstolpe i min professionella utveckling, och jag ser med spänning fram emot de möjligheter som ligger framför oss."
+    ,
+    "aboutLine5": "Om du har några frågor eller vill utforska potentiella samarbeten, tveka inte att höra av dig. Tack för att du tog dig tid att besöka min portfölj - jag uppskattar ditt intresse."
+    ,
+    "education": "Utbildning",
+    "bachelorInformationSystems": "Kandidatprogram i Informationssystem",
+    "infoSystemsContent": "Få kunskap om människor, organisationer och hur man utvecklar teknik för att stödja dem samtidigt som man lär sig grunderna i systemanalys och mjukvaruutveckling. Programmet erbjuder kurser i objektorienterad analys och design, agila metoder, interaktionsdesign, databashantering och programmering i C#.",
+    "programmingInternet": "Programmering för Internet",
+    "programmingInternetContent": "Få expertis i att använda C# för att programmera med stödjande tekniker, etablera lågnivåanslutningar till olika servrar, etablera högnivåanslutningar till specialiserade servrar som e-post-, webb- och databasservrar och säkerställa säkerheten vid kommunikation över internet.",
+    "webDevelopmentII": "Webbutveckling II",
+    "webDevelopmentIIContent": "Lär dig att bygga sofistikerade webbaserade system med hjälp av JavaScript och PHP för både klient- och serversidig programmering i denna kurs.",
+    "programmingCSharpIII": "Programmering i C#, III",
+    "programmingCSharpIIIContent": "Den här kursen är utformad för avancerade programutvecklare som vill vässa sina färdigheter och utveckla applikationer med de avancerade funktionerna i C#-språket och .NET-teknikerna.",
+    "computerNetworksI": "Datnät I",
+    "computerNetworksIContent": "Den här kursen ger en grundläggande förståelse för teorin och praktiken att konfigurera och säkra datornätverk, inklusive instruktioner om att skapa grundläggande nätverkstopologier.",
+    "gameDevelopment3D": "Spelutveckling - 3D-modellering och karaktärsanimation",
+    "gameDevelopment3DContent": "En kurs som ger en grundläggande förståelse och praktisk erfarenhet av att skapa spelgrafik med hjälp av 2D- och 3D-verktyg, inklusive tekniker för att rigga och animer karaktärer och deras rörelser för digitala spel.",
+    "skills": "Kompetenser",
+    "html": "HyperText Markup Language",
+    "css": "Cascading Style Sheets",
+    "php": "Hypertext Preprocessor",
+    "csharp": "C Sharp",
+    "javascript": "JavaScript",
+    "visualStudio": "Microsoft Visual Studio",
+    "visualStudioCode": "Visual Studio Code",
+    "sqlServer": "SQL Server Management Studio",
+    "unrealEngine": "Unreal Engine",
+    "autodeskMaya": "Autodesk Maya",
+    "gimp": "GIMP, Bildbehandlingsprogram",
+    "projects": "Projekt",
+    "menu": {
+      "about": "Om Mig",
+      "education": "Utbildning",
+      "skills": "Kompetenser",
+      "projects": "Projekt",
+      "github": "Github",
+      "linkedin": "LinkedIn",
+      "drag_message": "Dra mig!"
+    }
+  }
+
+  

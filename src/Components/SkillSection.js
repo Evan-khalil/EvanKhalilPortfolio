@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
-// Styled components for the container, title, and badge collection
 const Container = styled.div`
   padding: 20px;
-  position: relative; /* Ensure relative positioning for the title */
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -15,13 +15,13 @@ const Title = styled.h1`
   top: 50%;
   transform: translateY(-50%);
   color: white;
-  font-size: 100px; /* Adjust font size as needed */
+  font-size: 100px;
   margin: 0;
-  padding: 20px 10px; /* Adjust padding as needed */
+  padding: 20px 10px;
   opacity: ${(props) => (props.isVisible ? '0.70' : '0')};
-  transition: opacity 0.5s ease; /* Add transition for opacity */
+  transition: opacity 0.5s ease;
   width: 120px;
-  z-index: 1; /* Ensure the title is in front */
+  z-index: 1;
 `;
 
 const BadgeCollection = styled.div`
@@ -30,7 +30,6 @@ const BadgeCollection = styled.div`
   justify-content: center;
 `;
 
-// Keyframe animation for pulsating effect
 const pulsate = keyframes`
   0% {
     transform: scale(1);
@@ -43,7 +42,6 @@ const pulsate = keyframes`
   }
 `;
 
-// Styled components for badge, image, and custom text
 const Badge = styled.div`
   margin: 10px;
   padding: 20px;
@@ -78,7 +76,6 @@ const CustomText = styled.span`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-// Wrapper for badge and custom text to control hover effect
 const BadgeWrapper = styled.div`
   position: relative;
 
@@ -88,7 +85,6 @@ const BadgeWrapper = styled.div`
   }
 `;
 
-// SkillBadge component to render each individual skill badge
 function SkillBadge({ src, alt, customText }) {
   return (
     <BadgeWrapper>
@@ -100,11 +96,10 @@ function SkillBadge({ src, alt, customText }) {
   );
 }
 
-// Skills component to render the entire skills section
 function Skills() {
-  const [isVisible, setIsVisible] = useState(false); // State variable to control visibility
+  const { t } = useTranslation();
+  const [isVisible, setIsVisible] = useState(false);
 
-  // useEffect hook to observe when the skills section comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -121,36 +116,33 @@ function Skills() {
       { threshold: 0.5 }
     );
 
-    observer.observe(document.getElementById('skills')); // Observe the skills section
+    observer.observe(document.getElementById('skills'));
 
-    return () => observer.disconnect(); // Clean up the observer
+    return () => observer.disconnect();
   }, []);
 
-  // Render the skills section
   return (
     <section id='skills'>
       <Container>
-        <Title isVisible={isVisible}>Skills</Title> {/* Render the title with conditional opacity */}
+        <Title isVisible={isVisible}>{t('skills')}</Title>
         <BadgeCollection>
-          {/* Render each skill badge */}
-          <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText="HyperText Markup Language" />
-          <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" customText="Cascading Style Sheets" />
-          <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" customText="Hypertext Preprocessor" />
-          <SkillBadge src="./badges/csharp-svgrepo-com.svg" alt="C#" customText="C Sharp" />
-          <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" customText="JavaScript" />
+          <SkillBadge src="./badges/html-svgrepo-com.svg" alt="HTML" customText={t('html')} />
+          <SkillBadge src="./badges/css-3-svgrepo-com.svg" alt="CSS" customText={t('css')} />
+          <SkillBadge src="./badges/php2-svgrepo-com.svg" alt="php" customText={t('php')} />
+          <SkillBadge src="./badges/csharp-svgrepo-com.svg" alt="C#" customText={t('csharp')} />
+          <SkillBadge src="./badges/javascript-svgrepo-com.svg" alt="JavaScript" customText={t('javascript')} />
         </BadgeCollection>
         <BadgeCollection>
-          {/* Render additional skill badges */}
-          <SkillBadge src="./badges/icons8-visual-studio.svg" alt="Visual Studio" customText="Microsoft Visual Studio" />
-          <SkillBadge src="./badges/icons8-visual-studio-code.svg" alt="Visual Studio Code" customText="Visual Studio Code" />
-          <SkillBadge src="./badges/icons8-microsoft-sql-server.svg" alt="SQL Server Management Studio" customText="SQL Server Management Studio" />
-          <SkillBadge src="./badges/icons8-unreal-engine.svg" alt="Unreal Engine" customText="Unreal Engine" />
-          <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText="Autodesk Maya" />
-          <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText="GIMP, Image Manipulation Program" />
+          <SkillBadge src="./badges/icons8-visual-studio.svg" alt="Visual Studio" customText={t('visualStudio')} />
+          <SkillBadge src="./badges/icons8-visual-studio-code.svg" alt="Visual Studio Code" customText={t('visualStudioCode')} />
+          <SkillBadge src="./badges/icons8-microsoft-sql-server.svg" alt="SQL Server Management Studio" customText={t('sqlServer')} />
+          <SkillBadge src="./badges/icons8-unreal-engine.svg" alt="Unreal Engine" customText={t('unrealEngine')} />
+          <SkillBadge src="./badges/maya-2017.svg" alt="Autodesk Maya" customText={t('autodeskMaya')} />
+          <SkillBadge src="./badges/icons8-gimp.svg" alt="GIMP" customText={t('gimp')} />
         </BadgeCollection>
       </Container>
     </section>
   );
 }
 
-export default Skills; // Export the Skills component
+export default Skills;

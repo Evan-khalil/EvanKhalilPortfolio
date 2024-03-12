@@ -1,0 +1,47 @@
+{
+    "about": "About",
+    "aboutLine1": "Welcome to my portfolio! I'm thrilled to introduce myself as Evan Khalil, a recent graduate from Örebro University's Information Systems program. As I embark on my journey into the realm of system development, I'm brimming with enthusiasm to make my mark in the industry.",
+    "aboutLine2":"Driven by an unquenchable thirst for skill enhancement, I see myself as a highly motivated individual. My philosophy revolves around optimizing work processes to improve our quality of life."
+    ,"aboutLine3": "Through my academic journey and practical experiences, I have honed crucial attributes such as attention to detail, critical thinking, and problem-solving - qualities I eagerly want to apply to every project I undertake."
+    ,
+    "aboutLine4": "Within this portfolio, you will discover a collection of my past efforts and accomplishments. Each one represents a milestone in my professional development, and I look forward with excitement to the opportunities ahead."
+    ,
+    "aboutLine5": "If you have any questions or wish to explore potential collaborations, please don't hesitate to reach out. Thank you for taking the time to visit my portfolio - I appreciate your interest."
+    ,
+    "education": "Education",
+    "bachelorInformationSystems": "Bachelor's programme in Information Systems",
+    "infoSystemsContent": "Gaining knowledge about people, organizations and how to develop technology to support them alongside learning the basics of systems analysis and software development. The program offers courses in object-oriented analysis and design, agile methods, interaction design, database management and programming in C#.",
+    "programmingInternet": "Programming for Internet",
+    "programmingInternetContent": "Gain expertise in using C# to program with supportive technologies, establish low-level connections to various servers, establish high-level connections to specialized servers like email, web, and database servers, and ensure security while communicating over the internet.",
+    "webDevelopmentII": "Web Development II",
+    "webDevelopmentIIContent": "Learn to build sophisticated web-based systems using JavaScript and PHP for both client- and server-side programming in this course.",
+    "programmingCSharpIII": "Programming in C#, III",
+    "programmingCSharpIIIContent": "This course is designed for advanced programmers looking to sharpen their skills and develop applications using the advanced features of the C# language and .NET technologies.",
+    "computerNetworksI": "Computer Networks I",
+    "computerNetworksIContent": "This course provides a foundation in the theory and practice of configuring and securing computer networks, including instruction on creating basic network topologies.",
+    "gameDevelopment3D": "Game Development - 3D Modelling and Character Animation",
+    "gameDevelopment3DContent": "A course provides a foundational understanding and hands-on experience in creating game graphics using 2D and 3D tools, including techniques for rigging and animating characters and their movements for digital games.",
+    "skills": "Skills",
+    "html": "HyperText Markup Language",
+    "css": "Cascading Style Sheets",
+    "php": "Hypertext Preprocessor",
+    "csharp": "C Sharp",
+    "javascript": "JavaScript",
+    "visualStudio": "Microsoft Visual Studio",
+    "visualStudioCode": "Visual Studio Code",
+    "sqlServer": "SQL Server Management Studio",
+    "unrealEngine": "Unreal Engine",
+    "autodeskMaya": "Autodesk Maya",
+    "gimp": "GIMP, Image Manipulation Program",
+    "projects": "Projects",
+    "menu": {
+      "about": "About",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "github": "Github",
+      "linkedin": "LinkedIn",
+      "drag_message": "Drag me!"
+    }
+  }
+  

@@ -5,15 +5,18 @@ import AboutSection from './Components/AboutSection';
 import EducationSection from './Components/EducationSection';
 import SkillSection from './Components/SkillSection';
 import ProjectSection from './Components/ProjectSection';
-
+import LanguageSwitcher from './Components/LanguageSwitcher'; // Import LanguageSwitcher component
 
 function App() {
   return (
     <div className="App">
-    <div class="center">
+      <div className="top-right">
+        <LanguageSwitcher /> {/* Place LanguageSwitcher component here */}
+      </div>
+      <div class="center">
 
-    </div>
-        <MenySection />
+      </div>
+      <MenySection />
       <main>
         <AboutSection />
         <EducationSection />
