@@ -18,14 +18,14 @@ const LanguageSwitcher = () => {
       <button
         className={`language-button ${currentLanguage === 'en' ? 'en' : 'sv'}`}
         onClick={() => changeLanguage('en')}
-        style={{ backgroundColor: currentLanguage === 'en' ? '#1c4d3e' : '', transform: currentLanguage === 'en' ? 'scale(1.1)' : '' }}
+        style={{ backgroundColor: currentLanguage === 'en' ? '#006AA7' : '', transform: currentLanguage === 'en' ? 'scale(1.1)' : '' }}
       >
         EN
       </button>
       <button
         className={`language-button ${currentLanguage === 'sv' ? 'en' : 'sv'}`}
         onClick={() => changeLanguage('sv')}
-        style={{ backgroundColor: currentLanguage === 'sv' ? '#1c4d3e' : '', transform: currentLanguage === 'sv' ? 'scale(1.1)' : '' }}
+        style={{ backgroundColor: currentLanguage === 'sv' ? '#006AA7' : '', transform: currentLanguage === 'sv' ? 'scale(1.1)' : '' }}
 
       >
         SV
