@@ -1,6 +1,6 @@
 {
     "about": "About",
-    "aboutLine1": "Welcome to my portfolio! I'm thrilled to introduce myself as Evan Khalil, a recent graduate from Örebro University's Information Systems program. As I embark on my journey into the realm of system development, I'm brimming with enthusiasm to make my mark in the industry.",
+    "aboutLine1": "Welcome to my portfolio! My name is Evan Khalil and I am a recent graduate of the Information Systems program at Örebro University. I am excited to embark on my career as a system developer and am eager to take my first step in the field.",
     "aboutLine2":"Driven by an unquenchable thirst for skill enhancement, I see myself as a highly motivated individual. My philosophy revolves around optimizing work processes to improve our quality of life."
     ,"aboutLine3": "Through my academic journey and practical experiences, I have honed crucial attributes such as attention to detail, critical thinking, and problem-solving - qualities I eagerly want to apply to every project I undertake."
     ,
@@ -21,6 +21,11 @@
     "computerNetworksIContent": "This course provides a foundation in the theory and practice of configuring and securing computer networks, including instruction on creating basic network topologies.",
     "gameDevelopment3D": "Game Development - 3D Modelling and Character Animation",
     "gameDevelopment3DContent": "A course provides a foundational understanding and hands-on experience in creating game graphics using 2D and 3D tools, including techniques for rigging and animating characters and their movements for digital games.",
+    "StockholmsUniversitet": "Stockholm University",
+    "MalmöUniversitet": "Malmö University",
+    "MälardalensUniversitet": "Mälardalens University",
+    "ÖrebroUniversitet": "Örebro University",
+    "BlekingeHögskola": "Blekinge College",    
     "skills": "Skills",
     "html": "HyperText Markup Language",
     "css": "Cascading Style Sheets",

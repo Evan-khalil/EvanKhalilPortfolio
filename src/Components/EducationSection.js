@@ -73,21 +73,21 @@ const CenteredFlipCards = () => {
             backColor="#e9c46a"
             backTitle="bachelorInformationSystems"
             backContent="infoSystemsContent"
-            additionalText="örebroUni"
+            additionalText="ÖrebroUniversitet"
           />
           <FlipCard
             frontColor="#287271"
             backColor="#f4a261"
             backTitle="programmingInternet"
             backContent="programmingInternetContent"
-            additionalText="stockholmUni"
+            additionalText="StockholmsUniversitet"
           />
           <FlipCard
             frontColor="#2a9d8f"
             backColor="#e76f51"
             backTitle="webDevelopmentII"
             backContent="webDevelopmentIIContent"
-            additionalText="stockholmUni"
+            additionalText="StockholmsUniversitet"
           />
         </div>
 
@@ -97,21 +97,21 @@ const CenteredFlipCards = () => {
             backColor="#264653"
             backTitle="programmingCSharpIII"
             backContent="programmingCSharpIIIContent"
-            additionalText="malmöUni"
+            additionalText="MalmöUniversitet"
           />
           <FlipCard
             frontColor="#f4a261"
             backColor="#287271"
             backTitle="computerNetworksI"
             backContent="computerNetworksIContent"
-            additionalText="mälardalenUni"
+            additionalText="MälardalensUniversitet"
           />
           <FlipCard
             frontColor="#e76f51"
             backColor="#2a9d8f"
             backTitle="gameDevelopment3D"
             backContent="gameDevelopment3DContent"
-            additionalText="blekingeCollege"
+            additionalText="BlekingeHögskola"
           />
         </div>
       </div>

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 .about-section {
   width: 100%;
   padding: 50px 20px; 
   box-sizing: border-box;
   text-align: center;
+  color: white;
+  padding-bottom: 13%;
 }
 
 .container {
@@ -20,7 +20,7 @@
   padding-top: 20px;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 10%;
   transform: translateY(-50%);
   display: flex;
 }
@@ -36,46 +36,37 @@
   opacity: 0.70;
 }
 
-#about {
-  color: white;
+.about-text {
+  margin-top: 210px; /* Adjust as needed */
+  font-size: 23px;
 }
 
-
-.typewriter {
-  padding-top: 15%;
-  padding-bottom: 20%; /* Default padding for laptops and PCs */
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: pre-line;
-  margin: 0 auto;
-  letter-spacing: .15em;
-  word-wrap: break-word;
-  font-size: 19px;
+.about-line {
+  display: none;
 }
 
-.typewriter:after {
-  font-size: 29px;
-  color: orange;
-  content: "|";
-  animation: blink-caret .75s step-end infinite;
+.about-line.visible {
+  display: block;
+  animation: fadeInOut 10s linear forwards;
 }
 
-@keyframes blink-caret {
-  from, to { opacity: 1 }
-  50% { opacity: 0 }
-}
-
-/* Media Queries for different screen sizes */
-@media only screen and (max-width: 850px) {
-  /* Tablets and iPads */
-  .typewriter {
-    padding-bottom: 75% !important; /* Added !important */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  5%{
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  /* Phones */
-  .typewriter {
-    padding-bottom: 160% !important; /* Added !important */
-  }
-}
+/* Other styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Add your other styles here */
