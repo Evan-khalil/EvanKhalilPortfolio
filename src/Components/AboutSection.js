@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next'; 
 import './AboutSection.css';
 
 const About = () => {
-  const { t } = useTranslation(); // Destructure t function for translations
+  const { t } = useTranslation(); 
   const [isVisible, setIsVisible] = useState(false);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const lines = [
-    t('aboutLine1'), // Translate text using t function
+    t('aboutLine1'),
     t('aboutLine2'),
     t('aboutLine3'),
     t('aboutLine4'),
@@ -50,7 +50,7 @@ const About = () => {
     <section id="about" className="about-section">
       <div className="container">
         <div className={`vertical-title ${isVisible ? 'show-title' : ''}`}>
-          <h1 ref={titleRef} id='title'>{t('about')}</h1> {/* Translate title */}
+          <h1 ref={titleRef} id='title'>{t('about')}</h1> 
         </div>
         <div className="about-text">
           {lines.map((line, index) => (
