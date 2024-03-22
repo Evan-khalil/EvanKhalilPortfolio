@@ -5,13 +5,13 @@ import AboutSection from './Components/AboutSection';
 import EducationSection from './Components/EducationSection';
 import SkillSection from './Components/SkillSection';
 import ProjectSection from './Components/ProjectSection';
-import LanguageSwitcher from './Components/LanguageSwitcher'; // Import LanguageSwitcher component
+import LanguageSwitcher from './Components/LanguageSwitcher'; 
 
 function App() {
   return (
     <div className="App">
       <div className="top-right">
-        <LanguageSwitcher /> {/* Place LanguageSwitcher component here */}
+        <LanguageSwitcher /> 
       </div>
       <div class="center">
 
