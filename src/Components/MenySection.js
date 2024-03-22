@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook from react-i18next
+import { useTranslation } from 'react-i18next'; 
 import './MenySection.css';
 
 const CircularMenu = () => {
-  const { t } = useTranslation(); // Initialize useTranslation hook
+  const { t } = useTranslation(); 
   const [isActive, setIsActive] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
