@@ -19,7 +19,7 @@
     border: none;
     padding: 15px 0px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+    transition: background-color 0.3s, color 0.3s; 
   }
   
   .language-button.en {
