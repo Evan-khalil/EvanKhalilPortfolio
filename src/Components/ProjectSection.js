@@ -183,7 +183,7 @@ const videos = [
 ];
 
 const Carousel = () => {
-  const { t } = useTranslation(); // Access translations
+  const { t } = useTranslation(); 
 
   const [currentPosition, setCurrentPosition] = useState(Math.floor(videos.length / 2));
   const [showTitle, setShowTitle] = useState(false);
