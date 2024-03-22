@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './LanguageSwitcher.css'; // Import CSS file for styling
+import './LanguageSwitcher.css'; 
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -9,12 +9,10 @@ const LanguageSwitcher = () => {
     i18n.changeLanguage(lng);
   };
 
-  // Determine the current language
   const currentLanguage = i18n.language;
 
   return (
     <div>
-      {/* Language switcher buttons */}
       <button
         className={`language-button ${currentLanguage === 'en' ? 'en' : 'sv'}`}
         onClick={() => changeLanguage('en')}
