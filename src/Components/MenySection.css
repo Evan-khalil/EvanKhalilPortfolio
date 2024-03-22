@@ -13,7 +13,7 @@
   cursor: pointer;
   transition: transform 0.3s ease; 
   position: fixed;
-  bottom: 20px; /* Corrected typo */
+  bottom: 20px; 
   right: 20px;
   border-radius: 50%;
 }
@@ -39,12 +39,12 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: rgb(242, 242, 248); /* Blue background for demonstration */
+  background-color: rgb(242, 242, 248); 
   padding: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0c0101; /* White text color */
+  color: #0c0101; 
 }
 
 .active {
